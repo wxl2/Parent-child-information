@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+    <meta name="renderer" content="webkit">
+    <!--国产浏览器高速模式-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3241出品</title>
+
+    <!-- 公共样式 开始 -->
+    <link rel="shortcut icon" href="./images/favicon.ico"/>
+    <link rel="bookmark" href="./images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="./css/base.css">
+    <script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./layui/css/layui.css">
+    <script type="text/javascript" src="./layui/layui.js"></script>
+    <!-- 滚动条插件 -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css">
+    <script src="./js/jquery-ui-1.10.4.min.js"></script>
+    <script src="./js/jquery.mousewheel.min.js"></script>
+    <script src="./js/jquery.mCustomScrollbar.min.js"></script>
+    <!-- 公共样式 结束 -->
+
+    <link rel="stylesheet" type="text/css" href="./css/frameStyle.css">
+    <script type="text/javascript" src="./js/frame.js"></script>
+    <script type="text/javascript" src="./js/local.js"></script>
+
+</head>
+
+<body>
+<!-- 左侧菜单 - 开始 -->
+<div class="frameMenu">
+    <div class="logo">
+        <a href="javascript:void(0)" onclick="titleClick('./admin/index.html','后台')"><img
+                src="./images/logo.png"/></a>
+        <div class="logoText">
+            <h1>3241出品</h1>
+            <p id="userSession"></p>
+        </div>
+    </div>
+    <div class="menu">
+        <ul>
+            <li>
+                <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-console left"></i>客户关系管理<i
+                        class="layui-icon layui-icon-right right"></i></a>
+                <dl>
+
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">客户信息录入</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">客户跟进记录</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">客户关怀</a></dt>
+                </dl>
+            </li>
+            <li>
+                <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-cart-simple left"></i>服务管理<i
+                        class="layui-icon layui-icon-right right"></i></a>
+                <dl>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">合同管理</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">资源管理</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">回访记录</a></dt>
+                </dl>
+            </li>
+            <li>
+                <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-chart-screen left"></i>人力资源管理<i
+                        class="layui-icon layui-icon-right right"></i></a>
+                <dl>
+                    <dt>
+                        <a class="menuFA" href="javascript:void(0)"><i
+                                class="layui-icon layui-icon-cart-simple left"></i>人员信息管理<i
+                                class="layui-icon layui-icon-right right"></i></a>
+                        <dl>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">人员添加</a></dt>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">人员查询</a></dt>
+                        </dl>
+                    </dt>
+                    <dt>
+                        <a class="menuFA" href="javascript:void(0)"><i
+                                class="layui-icon layui-icon-cart-simple left"></i>人员变动管理<i
+                                class="layui-icon layui-icon-right right"></i></a>
+                        <dl>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">入职人员</a></dt>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">离职人员</a></dt>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">晋升记录</a></dt>
+                        </dl>
+                    </dt>
+                    <dt>
+                        <a class="menuFA" href="javascript:void(0)"><i
+                                class="layui-icon layui-icon-cart-simple left"></i>员工关怀<i
+                                class="layui-icon layui-icon-right right"></i></a>
+                        <dl>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">员工生日</a></dt>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">晋升提醒</a></dt>
+                        </dl>
+                    </dt>
+                </dl>
+                </dt>
+                </dl>
+            </li>
+            <li>
+                <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-chart-screen left"></i>报表管理<i
+                        class="layui-icon layui-icon-right right"></i></a>
+                <dl>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">上岗人员</a></dt>
+                    <dt>
+                        <a class="menuFA" href="javascript:void(0)"><i
+                                class="layui-icon layui-icon-cart-simple left"></i>工作状态<i
+                                class="layui-icon layui-icon-right right"></i></a>
+                        <dl>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">具有工作任务育婴师</a></dt>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">空闲育婴师</a></dt>
+                        </dl>
+                    </dt>
+                    <dt>
+                        <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-cart-simple left"></i>客户来访记录<i
+                                class="layui-icon layui-icon-right right"></i></a>
+                        <dl>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">添加来访记录</a></dt>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">来访记录</a></dt>
+                        </dl>
+                    </dt>
+                    <dt>
+                        <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-cart-simple left"></i>跟进情况<i
+                                class="layui-icon layui-icon-right right"></i></a>
+                        <dl>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">预备客户</a></dt>
+                        </dl>
+                    </dt>
+                    <dt>
+                        <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-cart-simple left"></i>销售情况<i
+                                class="layui-icon layui-icon-right right"></i></a>
+                        <dl>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">添加订单</a></dt>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">订单</a></dt>
+                        </dl>
+                    </dt>
+                    <dt>
+                        <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-cart-simple left"></i>收款信息表<i
+                                class="layui-icon layui-icon-right right"></i></a>
+                        <dl>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">收款信息表</a></dt>
+                        </dl>
+                    </dt>
+                    <dt>
+                        <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-cart-simple left"></i>维护客户表<i
+                                class="layui-icon layui-icon-right right"></i></a>
+                        <dl>
+                            <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">维护客户表</a></dt>
+                        </dl>
+                    </dt>
+                </dl>
+                </dt>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- 左侧菜单 - 结束 -->
+
+<div class="main">
+    <!-- 头部栏 - 开始 -->
+    <div class="frameTop">
+        <img class="jt" src="./images/top_jt.png"/>
+        <div class="topMenu">
+            <ul>
+                <li><a href="index.html" onclick="loginout()"><i class="layui-icon layui-icon-logout"></i>注销</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 头部栏 - 结束 -->
+
+    <!-- 核心区域 - 开始 -->
+    <div class="frameMain">
+        <div class="title" id="frameMainTitle">
+            <span><i class="layui-icon layui-icon-set"></i>首页</span>
+        </div>
+        <div class="con">
+            <iframe id="mainIframe" src="./admin/index.html" scrolling="no"></iframe>
+        </div>
+    </div>
+    <!-- 核心区域 - 结束 -->
+</div>
+<script>
+    layui.use(["jquery", "layer"], function () {
+        var $ = layui.$, layer = layui.layer;
+        window.onload = function () {
+            var data = getSessionName();
+            $('#userSession').html(JSON.parse(data).username);
+        };
+    });
+</script>
+</body>
+</html>
