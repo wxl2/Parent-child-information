@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+    <meta name="renderer" content="webkit">
+    <!--国产浏览器高速模式-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3241出品</title>
+
+    <!-- 公共样式 开始 -->
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+    <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <!-- 滚动条插件 -->
+    <link rel="stylesheet" type="text/css" href="../css/jquery.mCustomScrollbar.css">
+    <script src="../js/jquery-ui-1.10.4.min.js"></script>
+    <script src="../js/jquery.mousewheel.min.js"></script>
+    <script src="../js/jquery.mCustomScrollbar.min.js"></script>
+    <script src="../js/cframe.js"></script><!-- 仅供所有子页面使用 -->
+    <!-- 公共样式 结束 -->
+
+    <style>
+        .layui-form-label {
+            width: 100px;
+        }
+
+        .layui-input-block {
+            margin-left: 130px;
+        }
+
+        .layui-form {
+            margin-right: 30%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="cBody">
+    <form class="layui-form" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">名字</label>
+            <div class="layui-input-inline">
+                <input id="name" type="text" name="" autocomplete="off" placeholder="请输入育婴师的名字" value=""
+                       class="layui-input">
+            </div>
+        </div>
+
+        <label class="layui-form-label">育婴师图片</label>
+        <div class="layui-upload-drag" id="imageurl">
+            <i class="layui-icon layui-icon-upload"></i>
+            <p>点击上传，或将文件拖拽到此处</p>
+            <div class="layui-hide" id="uploadDemoView">
+                <hr>
+                <img src="" alt="上传成功后渲染" style="max-width: 196px">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">年龄</label>
+            <div class="layui-input-inline">
+                <input id="age" type="text" name="" autocomplete="off" placeholder="请输入育婴师年龄" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">星座</label>
+            <div class="layui-input-inline">
+                <input id="constellation" type="text" name="" autocomplete="off" placeholder="请输入育婴师星座" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">学历</label>
+            <div class="layui-input-inline">
+                <input id="edulevel" type="text" name="" autocomplete="off" placeholder="请输入育婴师学历" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">电话</label>
+            <div class="layui-input-inline">
+                <input id="phone" type="text" name="" autocomplete="off" placeholder="请输入联系电话" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">婚姻状况</label>
+            <div class="layui-input-inline">
+                <select id="marry">
+                    <option value="未婚">未婚</option>
+                    <option value="已婚">已婚</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">证书</label>
+            <div class="layui-input-inline">
+                <input id="credential" type="text" name="" autocomplete="off" placeholder="请输入获取证书情况" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">等级</label>
+            <div class="layui-input-inline">
+                <select id="level">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">推荐理由</label>
+            <div class="layui-input-inline">
+                <input id="reason" type="text" name="" autocomplete="off" placeholder="请输入推荐理由" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">工作经历</label>
+            <div class="layui-input-inline">
+                <input id="work" type="text" name="" autocomplete="off" placeholder="请输入工作经历" value=""
+                       class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="submitBut" onclick="return false">立即提交</button>
+                <button type="reset" class="layui-btn">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+<script>
+
+    layui.use(['upload', 'form'], function () {
+        var form = layui.form;
+        var upload = layui.upload;
+        var layer = layui.layer;
+
+        /*layui图片上传*/
+        upload.render({
+            elem: '#imageurl',
+            url: '/addNusery',
+            accept: "images",
+            acceptMime: "image/*",    //acceptMime: 'image/*'（只显示图片文件）
+            bindAction: '#submitBut',
+            auto: false,
+            data: {
+                params: ''
+            },
+            before: function (obj) {
+                var map = {};
+                map.name = $('#name').val();
+                // map.imageurl=$('#imageurl').val();
+                map.age = $('#age').val();
+                map.constellation = $('#constellation').val();
+                map.edulevel = $('#edulevel').val();
+                map.marry = $('#marry').val();
+                map.credential = $('#credential').val();
+                map.level = $('#level').val();
+                map.reason = $('#reason').val();
+                map.work = $('#work').val();
+                this.data.params = JSON.stringify(map);
+            },
+            choose: function (obj) {
+                obj.preview(function (index, file, result) {      // 展示
+                    $('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', result);
+                });
+            },
+            done: function (res) {
+                if (res.code == 0)
+                    layer.msg('操作成功');
+                layer.msg(res.msg);
+            },
+            error: function () {
+                layer.msg('操作失败');
+            }
+        });
+    });
+</script>
