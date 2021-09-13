@@ -22,16 +22,6 @@ public class UserService {
         return null;
     }
 
-    public int register(User user){
-       try {
-           userDao.insertUser(user);
-           return 0;
-       }catch (Exception e){
-           e.printStackTrace();
-           return -1;
-       }
-    }
-
     public User getUser(String username){
         try {
             User userExist = (User) userDao.getUserByUserName(username);
@@ -44,15 +34,5 @@ public class UserService {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public int setAddrAndPhone(String username,String addr,String phone){
-        try{
-            userDao.updatePhoneAddr(phone,addr,username);
-        }catch (Exception e){
-            e.printStackTrace();
-            return -1;
-        }
-        return 0;
     }
 }
