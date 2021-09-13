@@ -38,7 +38,6 @@
                 src="./images/logo.png"/></a>
         <div class="logoText">
             <h1>3241出品</h1>
-            <p id="userSession"></p>
         </div>
     </div>
     <div class="menu">
@@ -54,7 +53,7 @@
                 </dl>
             </li>
             <li>
-                <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-cart-simple left"></i>服务管理<i
+                <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-service left"></i>服务管理<i
                         class="layui-icon layui-icon-right right"></i></a>
                 <dl>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">合同管理</a></dt>
@@ -63,12 +62,12 @@
                 </dl>
             </li>
             <li>
-                <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-chart-screen left"></i>人力资源管理<i
+                <a class="menuFA" href="javascript:void(0)"><i class="layui-icon layui-icon-group left"></i>人力资源管理<i
                         class="layui-icon layui-icon-right right"></i></a>
                 <dl>
                     <dt>
                         <a class="menuFA" href="javascript:void(0)"><i
-                                class="layui-icon layui-icon-cart-simple left"></i>人员信息管理<i
+                                class="layui-icon layui-icon-user left"></i>人员信息管理<i
                                 class="layui-icon layui-icon-right right"></i></a>
                         <dl>
                             <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">人员添加</a></dt>
@@ -77,7 +76,7 @@
                     </dt>
                     <dt>
                         <a class="menuFA" href="javascript:void(0)"><i
-                                class="layui-icon layui-icon-cart-simple left"></i>人员变动管理<i
+                                class="layui-icon layui-icon-flag left"></i>人员变动管理<i
                                 class="layui-icon layui-icon-right right"></i></a>
                         <dl>
                             <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">入职人员</a></dt>
@@ -87,7 +86,7 @@
                     </dt>
                     <dt>
                         <a class="menuFA" href="javascript:void(0)"><i
-                                class="layui-icon layui-icon-cart-simple left"></i>员工关怀<i
+                                class="layui-icon layui-icon-heart-fill left"></i>员工关怀<i
                                 class="layui-icon layui-icon-right right"></i></a>
                         <dl>
                             <dt><a href="javascript:void(0)" onclick="menuCAClick('./admin/',this)">员工生日</a></dt>
@@ -181,14 +180,5 @@
     </div>
     <!-- 核心区域 - 结束 -->
 </div>
-<script>
-    layui.use(["jquery", "layer"], function () {
-        var $ = layui.$, layer = layui.layer;
-        window.onload = function () {
-            var data = getSessionName();
-            $('#userSession').html(JSON.parse(data).username);
-        };
-    });
-</script>
 </body>
 </html>
