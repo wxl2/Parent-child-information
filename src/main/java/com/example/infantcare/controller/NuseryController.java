@@ -44,7 +44,7 @@ public class NuseryController {
             File dest = new File(filePath);
             file.transferTo(dest);
             Nusery nusery = new Nusery(0,name,fileName,age,constellation,edulevel,
-                    marry,credential,level,reason,work);
+                    marry,credential,level,reason,work,"");
             if(nuseryService.addNusery(nusery) < 0){
                 map.put("code",-1);
                 return map;
@@ -73,6 +73,41 @@ public class NuseryController {
             map.put("msg","ok");
             map.put("count",c_list.size());
             map.put("data",c_list);
+        }
+        return map;
+    }
+    // 获取在职人员数据
+    @GetMapping("/getEntrant")
+    public Map<String,Object> getEntrant(){
+        Map<String,Object> map = new HashMap<String,Object>();
+        List<Map<String,Object>> c_list = nuseryService.getEntrant();
+        if(c_list == null){
+            map.put("code","-1");
+            map.put("msg","暂无数据");
+            map.put("count",0);
+            map.put("data","[]");
+        }
+        else{
+            map.put("code","0");
+            map.put("msg","ok");
+            map.put("count",c_list.size());
+            map.put("data",c_list);
+        }
+        return map;
+    }
+
+
+    @PostMapping("/updateNursery")
+    public Map<String,Object> updateNursery(@RequestBody Map<String,Object> map_){
+        Map<String,Object> map = new HashMap<String,Object>();
+        int result = nuseryService.updateNursery(((Integer) map_.get("id")).intValue());
+        if(result == 0){
+            map.put("code","-1");
+            map.put("msg","暂无数据");
+        }
+        else{
+            map.put("code","0");
+            map.put("msg","ok");
         }
         return map;
     }

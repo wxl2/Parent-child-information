@@ -31,4 +31,24 @@ public class NuseryService {
             return null;
         }
     }
+    public List<Map<String,Object>> getEntrant(){
+        try {
+            List<Map<String,Object>> list = nuseryMapper.getEntrant();
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    //  修改  员工从在职变为离职
+    public int updateNursery(int id){
+        try {
+            int list = nuseryMapper.updateNursery(id);
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
 }
