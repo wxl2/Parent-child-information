@@ -25,7 +25,6 @@ public class NuseryController {
         Map<String,Object> map = new HashMap<String,Object>();
         JSONObject obj = JSON.parseObject(params);
         String name = obj.getString("name");
-        String imageurl = obj.getString("imageurl");
         int age = obj.getInteger("age");
         String constellation = obj.getString("constellation");
         String edulevel = obj.getString("edulevel");
@@ -34,9 +33,6 @@ public class NuseryController {
         int level = obj.getInteger("level");
         String reason = obj.getString("reason");
         String work = obj.getString("work");
-
-        Nusery nusery = new Nusery(0,name,imageurl,age,constellation,edulevel,
-                marry,credential,level,reason,work);
 
 
         try{
@@ -47,6 +43,8 @@ public class NuseryController {
             String filePath = path+'/'+fileName;
             File dest = new File(filePath);
             file.transferTo(dest);
+            Nusery nusery = new Nusery(0,name,fileName,age,constellation,edulevel,
+                    marry,credential,level,reason,work);
             if(nuseryService.addNusery(nusery) < 0){
                 return "添加失败";
             }
