@@ -21,7 +21,7 @@ public class NuseryController {
     @Autowired
     NuseryService nuseryService;
     @PostMapping("/addNusery")
-    public String addNusery(@RequestParam("file") MultipartFile file, @RequestParam("params")String params){
+    public Map<String,Object> addNusery(@RequestParam("file") MultipartFile file, @RequestParam("params")String params){
         Map<String,Object> map = new HashMap<String,Object>();
         JSONObject obj = JSON.parseObject(params);
         String name = obj.getString("name");
@@ -46,13 +46,16 @@ public class NuseryController {
             Nusery nusery = new Nusery(0,name,fileName,age,constellation,edulevel,
                     marry,credential,level,reason,work);
             if(nuseryService.addNusery(nusery) < 0){
-                return "添加失败";
+                map.put("code",-1);
+                return map;
             }
         }catch (Exception e){
             e.printStackTrace();
-            return "添加失败";
+            map.put("code",-1);
+            return map;
         }
-        return "添加成功";
+        map.put("code",0);
+        return map;
     }
 
     @GetMapping("/getNuserys")
