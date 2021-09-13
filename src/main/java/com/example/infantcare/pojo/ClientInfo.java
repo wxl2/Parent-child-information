@@ -1,13 +1,15 @@
 package com.example.infantcare.pojo;
 
+//客户信息
+
 import java.sql.Timestamp;
 
 public class ClientInfo {
     private int id;
-    private String name;
-    private int inviter;
-    private String phone;
-    private String appointment;
+    private String name;                //客户名称
+    private int inviter;                //客户来源
+    private String phone;               //电话
+    private String appointment;         //需求时间
 
     public int getId() {
         return id;

@@ -1,5 +1,6 @@
 package com.example.infantcare.pojo;
 
+//用户登录信息
 import lombok.Data;
 @Data
 public class User {

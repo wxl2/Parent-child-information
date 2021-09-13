@@ -1,17 +1,19 @@
 package com.example.infantcare.pojo;
 
+//育婴师简历
+
 public class Nusery {
     private int id;
-    private String name;
-    private String imageurl;
-    private int age;
-    private String constellation;
-    private String edulevel;
-    private String marry;
-    private String credential;
-    private int level;
-    private String reason;
-    private String work;
+    private String name;                //姓名
+    private String imageurl;            //照片
+    private int age;                    //年龄
+    private String constellation;       //星座
+    private String edulevel;            //学历
+    private String marry;               //婚姻状况
+    private String credential;          //证书
+    private int level;                  //级别
+    private String reason;              //推荐理由
+    private String work;                //工作经历
 
     public int getId() {
         return id;
