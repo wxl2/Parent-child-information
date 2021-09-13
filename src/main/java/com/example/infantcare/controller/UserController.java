@@ -34,8 +34,4 @@ public class UserController {
         res.put("data","");
         return res;
     }
-    @PostMapping("/test")
-    public void test(@RequestBody Map<String,Object> map, HttpServletResponse response, HttpServletRequest request) {
-        map.get("appointment");
-    }
 }
