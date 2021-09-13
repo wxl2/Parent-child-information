@@ -14,13 +14,13 @@ public class Nusery {
     private int level;                  //级别
     private String reason;              //推荐理由
     private String work;                //工作经历
-    private String condition_;
+    private String status;              //在职状态
 
     public int getId() {
         return id;
     }
 
-    public Nusery(int id, String name, String imageurl, int age, String constellation, String edulevel, String marry, String credential, int level, String reason, String work, String condition_) {
+    public Nusery(int id, String name, String imageurl, int age, String constellation, String edulevel, String marry, String credential, int level, String reason, String work, String status) {
         this.id = id;
         this.name = name;
         this.imageurl = imageurl;
@@ -32,7 +32,7 @@ public class Nusery {
         this.level = level;
         this.reason = reason;
         this.work = work;
-        this.condition_ = condition_;
+        this.status = status;
     }
 
     public Nusery(){}
@@ -118,5 +118,13 @@ public class Nusery {
 
     public void setWork(String work) {
         this.work = work;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

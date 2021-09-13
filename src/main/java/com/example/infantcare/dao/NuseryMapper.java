@@ -2,6 +2,7 @@ package com.example.infantcare.dao;
 
 import com.example.infantcare.pojo.Nusery;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -16,11 +17,11 @@ public interface NuseryMapper {
     @Select("SELECT * FROM nursery")
     public List<Map<String,Object>> selectNuserys();
 
-    @Select("SELECT * FROM nursery where condition_ ='在职'")
+    @Select("SELECT * FROM nursery where status ='在职'")
     public List<Map<String,Object>> getEntrant();
 
 
     // 修改
-    @Update("update nursery set condition_='离职' where id=#{id} ")
-    public int updateNursery(int id);
+    @Update("update nursery set status='离职' where id=#{id} ")
+    public int updateNursery(@Param("id") int id);
 }
