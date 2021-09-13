@@ -14,6 +14,8 @@ import java.util.Map;
 public class ClientInfoService {
     @Autowired
     private ClientInfoMapper info;
+
+    //添加客户信息
     public int addClientInfo(ClientInfo clientInfo){
         try {
             info.insertClient(clientInfo);
@@ -23,6 +25,8 @@ public class ClientInfoService {
         }
         return 0;
     }
+
+    //显示客户信息
     public List<Map<String,Object>> getClientInfos(){
         try {
             List<Map<String,Object>> list = info.selectClients();
