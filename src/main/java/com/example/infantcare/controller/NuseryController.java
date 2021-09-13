@@ -40,8 +40,8 @@ public class NuseryController {
         return "添加成功";
     }
 
-    @GetMapping("/getClientInfos")
-    public Map<String,Object> getClientInfos(){
+    @GetMapping("/getNuserys")
+    public Map<String,Object> getNuserys(){
         Map<String,Object> map = new HashMap<String,Object>();
         List<Map<String,Object>> c_list = nuseryService.getNuserys();
         if(c_list == null){
