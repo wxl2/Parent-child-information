@@ -17,19 +17,20 @@
     <script src="../js/jquery.mCustomScrollbar.min.js"></script>
 </head>
 <body>
+<table class="layui-hide" id="test"></table>
 <div style="margin-left: 50px;">
     <form class="layui-form layui-form-pane">
         <div class="layui-form-item">
             <label class="layui-form-label">客户名称</label>
             <div class="layui-input-inline">
-                <input type="text" id="name" disabled="disabled" name="name" lay-verify="required" placeholder="请输入客户名称"
+                <input type="text" id="name"  name="name" lay-verify="required" placeholder="请输入客户名称"
                        value="" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">邀请人</label>
             <div class="layui-input-inline">
-                <input type="text" id="inviter" disabled="disabled" name="inviter" lay-verify="required"
+                <input type="text" id="inviter"  name="inviter" lay-verify="required"
                        placeholder="请输入邀请人的id" value="" autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -40,13 +41,10 @@
                        class="layui-input">
             </div>
         </div>
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-            <legend>需求时间段</legend>
-        </fieldset>
         <div class="layui-inline">
-            <label class="layui-form-label">日期时间范围</label>
+            <label class="layui-form-label">需求时间</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="appointment" placeholder=" - ">
+                <input type="text" class="layui-input" id="appointment">
             </div>
         </div>
     </form>
@@ -54,7 +52,28 @@
         <button type="button" onclick="sendAddr()" class="layui-btn layui-btn-fluid" ;>提交</button>
     </div>
 </div>
+</body>
+</html>
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
 
+        table.render({
+            elem: '#test'
+            ,type:"GET"
+            ,url:'/getClientInfos'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                ,{field:'name', title: '名字'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'inviter', title: '邀请人', sort: true}
+                ,{field:'phone', title: '联系电话'}
+                ,{field:'appointment', title: '预约时间'}
+            ]]
+            ,page: true
+            ,parseData:paging
+        });
+    });
+</script>
 
 
 <!--时间选择框-->
@@ -63,11 +82,10 @@
 <script>
     layui.use('laydate', function () {
         var laydate = layui.laydate;
-        //日期时间范围
+        //日期时间选择器
         laydate.render({
             elem: '#appointment'
-            , type: 'datetime'
-            , range: true
+            ,type: 'datetime'
         });
     });
 </script>
@@ -85,5 +103,3 @@
         postAjax(str,'/addClientInfo','text','application/json');
     }
 </script>
-</body>
-</html>
