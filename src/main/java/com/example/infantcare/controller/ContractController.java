@@ -19,36 +19,35 @@ public class ContractController {
     ContractService contractService;
 
     @PostMapping("/addContract")
-    public String addContract(@RequestBody Map<String,Object> map){
+    public String addContract(@RequestBody Map<String, Object> map) {
 
         String name = (String) map.get("name");
         String phone = (String) map.get("phone");
         String confinement = (String) map.get("confinement");
-        String requireDate = (String) map.get("requiredate");
+        String requireDate = (String) map.get("requireDate");
         String requirement = (String) map.get("requirement");
-        String nusery = (String) map.get("nusery");
-        Contract contract = new Contract(0,name,phone,confinement,requireDate,requirement,nusery);
-        if (contractService.addContract(contract)<0){
+        String nursery = (String) map.get("nursery");
+        Contract contract = new Contract(0, name, phone, confinement, requireDate, requirement, nursery);
+        if (contractService.addContract(contract) < 0) {
             return "添加失败";
         }
         return "添加成功";
     }
 
     @GetMapping("/getContract")
-    public Map<String,Object> getContract(){
-        Map<String,Object> map = new HashMap<>();
-        List<Map<String,Object>> c_list = contractService.getContract();
-        if (c_list == null){
-            map.put("code","-1");
-            map.put("msg","暂无数据");
-            map.put("count",0);
-            map.put("data","[]");
-        }
-        else {
-            map.put("code","0");
-            map.put("msg","ok");
-            map.put("count",c_list.size());
-            map.put("data",c_list);
+    public Map<String, Object> getContract() {
+        Map<String, Object> map = new HashMap<>();
+        List<Map<String, Object>> c_list = contractService.getContract();
+        if (c_list == null) {
+            map.put("code", "-1");
+            map.put("msg", "暂无数据");
+            map.put("count", 0);
+            map.put("data", "[]");
+        } else {
+            map.put("code", "0");
+            map.put("msg", "ok");
+            map.put("count", c_list.size());
+            map.put("data", c_list);
         }
         return map;
     }
