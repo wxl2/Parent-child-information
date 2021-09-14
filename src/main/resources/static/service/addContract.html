@@ -73,6 +73,14 @@
             </div>
         </div>
 
+        <div class="layui-form-item">
+            <label class="layui-form-label">合同金额</label>
+            <div class="layui-input-inline">
+                <input type="text" id="conmoney" name="conmoney" lay-verify="required"
+                       placeholder="请输入合同金额" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
 
     </form>
 
@@ -99,6 +107,7 @@
                 , {field: 'requiredate', title: '需求时间'}
                 , {field: 'requirement', title: '需求内容'}
                 , {field: 'nursery', title: '育婴师姓名'}
+                , {field: 'conmoney', title: '合同金额'}
             ]]
             , page: true
             , parseData: paging
@@ -138,6 +147,7 @@
         str.requireDate = $("#requiredate").val();
         str.requirement = $("#requirement").val();
         str.nursery = $("#nursery").val();
+        str.conMoney = $("#conmoney").val();
         postAjax(str, '/addContract', 'text', 'application/json');
     }
 </script>
