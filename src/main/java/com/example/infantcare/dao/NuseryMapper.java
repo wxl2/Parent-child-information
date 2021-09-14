@@ -45,8 +45,8 @@ public interface NuseryMapper {
             "STR_TO_DATE(DATE_FORMAT(NOW(), '%Y-%m-%d'),'%Y-%m-%d') AS today FROM nursery) AS a)AS b")
     public List<Map<String,Object>> selectBirthdayOff();
 
-    @Select("SELECT a.id,a.date,upgradetable.oldlevel,upgradetable.newlevel,TIMESTAMPDIFF(DAY,a.date,NOW())off FROM " +
-            "upgradetable,(SELECT id,MAX(date)date FROM upgradetable GROUP BY id) AS a WHERE a.id = upgradetable.id AND " +
-            "a.date = upgradetable.date")
+    @Select("SELECT nursery.`name`,b.* FROM (SELECT a.id,a.date,upgradetable.oldlevel,upgradetable.newlevel,TIMESTAMPDIFF" +
+            "(DAY,a.date,NOW())off FROM upgradetable,(SELECT id,MAX(date)date FROM upgradetable GROUP BY id) AS a WHERE " +
+            "a.id = upgradetable.id AND a.date = upgradetable.date) AS b,nursery WHERE b.id = nursery.id;")
     public List<Map<String,Object>> selectUpgradeRecordOff();
 }
