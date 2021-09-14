@@ -156,4 +156,42 @@ public class NuseryController {
         }
         return map;
     }
+
+    @GetMapping("/getBirthdayOff")
+    public Map<String,Object> getBirthdayOff(){
+        Map<String,Object> map = new HashMap<String,Object>();
+        List<Map<String,Object>> c_list = nuseryService.getBirthdayOff();
+        if(c_list == null){
+            map.put("code","-1");
+            map.put("msg","暂无数据");
+            map.put("count",0);
+            map.put("data","[]");
+        }
+        else{
+            map.put("code","0");
+            map.put("msg","ok");
+            map.put("count",c_list.size());
+            map.put("data",c_list);
+        }
+        return map;
+    }
+
+    @GetMapping("/getUpgradeRecordOff")
+    public Map<String,Object> getUpgradeRecordOff(){
+        Map<String,Object> map = new HashMap<String,Object>();
+        List<Map<String,Object>> c_list = nuseryService.getUpgradeRecordOff();
+        if(c_list == null){
+            map.put("code","-1");
+            map.put("msg","暂无数据");
+            map.put("count",0);
+            map.put("data","[]");
+        }
+        else{
+            map.put("code","0");
+            map.put("msg","ok");
+            map.put("count",c_list.size());
+            map.put("data",c_list);
+        }
+        return map;
+    }
 }

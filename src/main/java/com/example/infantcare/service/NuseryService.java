@@ -80,4 +80,24 @@ public class NuseryService {
             return null;
         }
     }
+
+    public  List<Map<String,Object>> getBirthdayOff(){
+        try {
+            List<Map<String,Object>> list = nuseryMapper.selectBirthdayOff();
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public  List<Map<String,Object>> getUpgradeRecordOff(){
+        try {
+            List<Map<String,Object>> list = nuseryMapper.selectUpgradeRecordOff();
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
