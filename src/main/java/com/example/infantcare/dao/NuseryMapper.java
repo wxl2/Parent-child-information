@@ -32,9 +32,12 @@ public interface NuseryMapper {
     @Update("UPDATE nursery SET `level` = #{level} WHERE `id` = #{id} ")
     public int updateLevel(@Param("id") int id,@Param("level") int level);
 
+
+    ///晋升记录表操作
     @Insert("INSERT INTO upgradetable(`id`, `oldlevel`, `newlevel`) VALUES (#{id},#{oldlevel},#{newlevel})")
     public void insertUpgradeTable(@Param("id") int id,@Param("oldlevel") int oldLevel,@Param("newlevel") int newLevel);
 
-    @Select("SELECT * FROM upgradetable")
+    @Select("SELECT upgradetable.id,nursery.`name`,upgradetable.date,upgradetable.oldlevel,upgradetable.newlevel FROM " +
+            "upgradetable,nursery WHERE upgradetable.id = nursery.id;")
     public List<Map<String,Object>> selectUpgradeRecord();
 }

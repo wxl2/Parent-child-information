@@ -128,7 +128,8 @@ public class NuseryController {
     @PostMapping("/updateLevel")
     public String updateLevel(@RequestBody String text){
         JSONObject obj = JSON.parseObject(text);
-        int level = obj.getInteger("level") + 1;
+        int level = obj.getInteger("level");
+        level  = level+1;
         if(level>5)
             return "最大等级为5";
         int id = obj.getInteger("id");
