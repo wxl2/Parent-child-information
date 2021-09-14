@@ -94,20 +94,9 @@
       var $ = layui.$, layer = layui.layer, form = layui.form;
       var params = {};
       params.id = data.id;
+      postAjax(params,'/updateNursery','text','application/json');
         //修改按钮
         console.log(obj);
-      $.ajax({
-        type:"POST"
-        ,url:'/updateNursery'
-        ,data: JSON.stringify(str)
-        ,success:function (data){
-          if (res.code == 0)
-            layer.msg('操作成功');
-        }
-        , error: function () {
-          layer.msg('操作失败');
-        }
-      });
     });
   });
 </script>

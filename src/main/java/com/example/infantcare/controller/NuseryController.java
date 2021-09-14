@@ -98,9 +98,16 @@ public class NuseryController {
 
 
     @PostMapping("/updateNursery")
-    public Map<String,Object> updateNursery(@RequestBody Map<String,Object> map_){
+    public Map<String,Object> updateNursery(@RequestParam("id") String id){
         Map<String,Object> map = new HashMap<String,Object>();
-        int result = nuseryService.updateNursery(((Integer) map_.get("id")).intValue());
+        String str = id;
+        int id_ = 0;
+        try {
+            id_ = Integer.valueOf(str).intValue();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        int result = nuseryService.updateNursery(id_);
         if(result == 0){
             map.put("code","-1");
             map.put("msg","暂无数据");
