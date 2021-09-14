@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface ContractMapper {
-    @Insert("INSERT INTO contract(`id`,`name`,`phone`,`confinementDate`,`requireDate`,`requirement`,`nuseryName`) VALUES (#{id},#{name},#{phone},#{confinementDate},#{requireDate},#{requirement},#{nueryName})")
+    @Insert("INSERT INTO contract(`id`,`name`,`phone`,`confinement`,`requiredate`,`requirement`,`nusery`) VALUES (#{id},#{name},#{phone},#{confinement},#{requiredate},#{requirement},#{nusery})")
     public void insertContract(Contract contract);
 
-    @Select("SELECT name,phone,confinementDate,requireDate,requirement,nuseryName FROM contract")
+    @Select("SELECT name,phone,confinement,requiredate,requirement,nusery FROM contract")
     public List<Map<String,Object>> selectContract();
 }

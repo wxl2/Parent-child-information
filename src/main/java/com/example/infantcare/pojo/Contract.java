@@ -5,10 +5,10 @@ public class Contract {
     private int id;
     private String name;                        //客户姓名
     private String phone;                       //客户电话
-    private String confinementDate;             //预产期
+    private String confinement;                 //预产期
     private String requireDate;                 //需求时间
     private String requirement;                 //需求内容
-    private String nuseryName;                  //育婴师
+    private String nusery;                      //育婴师
 
     public int getId() {
         return id;
@@ -34,12 +34,12 @@ public class Contract {
         this.phone = phone;
     }
 
-    public String getConfinementDate() {
-        return confinementDate;
+    public String getConfinement() {
+        return confinement;
     }
 
-    public void setConfinementDate(String confinementDate) {
-        this.confinementDate = confinementDate;
+    public void setConfinement(String confinement) {
+        this.confinement = confinement;
     }
 
     public String getRequireDate() {
@@ -58,22 +58,22 @@ public class Contract {
         this.requirement = requirement;
     }
 
-    public String getNuseryName() {
-        return nuseryName;
+    public String getNusery() {
+        return nusery;
     }
 
-    public void setNuseryName(String nuseryName) {
-        this.nuseryName = nuseryName;
+    public void setNusery(String nusery) {
+        this.nusery = nusery;
     }
 
-    public Contract(int id, String name, String phone, String confinementDate, String requireDate, String requirement, String nuseryName) {
+    public Contract(int id, String name, String phone, String confinement, String requireDate, String requirement, String nusery) {
         this.id = id;
         this.name = name;
         this.phone = phone;
-        this.confinementDate = confinementDate;
+        this.confinement = confinement;
         this.requireDate = requireDate;
         this.requirement = requirement;
-        this.nuseryName = nuseryName;
+        this.nusery = nusery;
     }
 
     public Contract() {
