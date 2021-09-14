@@ -12,4 +12,8 @@ public interface ClientInfoMapper {
     public void insertClient(ClientInfo info);
     @Select("SELECT name,inviter,phone,DATE_FORMAT(appointment,'%Y-%m-%d %H:%i:%S') appointment FROM clientinfo")
     public List<Map<String,Object>> selectClients();
+
+    // 获取跟进记录表
+    @Select("SELECT clientinfo.id,`name`,DATE_FORMAT(recordTime,'%Y-%m-%d %H:%i:%S') recordTime,contacts,relation,communicate FROM follow_record,clientinfo where follow_record.id=clientinfo.id")
+    public List<Map<String,Object>> getFollowRecord();
 }

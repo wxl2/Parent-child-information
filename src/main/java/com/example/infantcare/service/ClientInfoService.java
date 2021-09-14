@@ -36,4 +36,15 @@ public class ClientInfoService {
             return null;
         }
     }
+     //显示跟进记录
+    public List<Map<String,Object>> getFollowRecord(){
+        try {
+            List<Map<String,Object>> list = info.getFollowRecord();
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
