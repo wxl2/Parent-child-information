@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+    <meta name="renderer" content="webkit">
+    <!--国产浏览器高速模式-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3241出品</title>
+
+    <!-- 公共样式 开始 -->
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+    <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <!-- 滚动条插件 -->
+    <link rel="stylesheet" type="text/css" href="../css/jquery.mCustomScrollbar.css">
+    <script src="../js/local.js"></script>
+    <script src="../js/jquery-ui-1.10.4.min.js"></script>
+    <script src="../js/jquery.mousewheel.min.js"></script>
+    <script src="../js/jquery.mCustomScrollbar.min.js"></script>
+    <script src="../js/cframe.js"></script><!-- 仅供所有子页面使用 -->
+    <!-- 公共样式 结束 -->
+
+    <style>
+        .layui-form-label {
+            width: 100px;
+        }
+
+        .layui-input-block {
+            margin-left: 130px;
+        }
+
+        .layui-form {
+            margin-right: 30%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="cBody">
+    <form class="layui-form" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">销售人员</label>
+            <div class="layui-input-inline">
+                <input id="salesman" type="text" name="" autocomplete="off" placeholder="请输入销售人员名字" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户</label>
+            <div class="layui-input-inline">
+                <input id="name" type="text" name="" autocomplete="off" placeholder="请输入客户名字" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">电话</label>
+            <div class="layui-input-inline">
+                <input id="phone" type="text" name="" autocomplete="off" placeholder="请输入联系电话" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所需服务</label>
+            <div class="layui-input-inline">
+                <select id="requirement">
+                    <option value="育婴">育婴</option>
+                    <option value="带娃">带娃</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">预计收款金额</label>
+            <div class="layui-input-inline">
+                <input id="money" type="text" name="" autocomplete="off" placeholder="预计收款金额" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">预计签约时间</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="date" placeholder="yyyy-MM-dd">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">订单状态</label>
+            <div class="layui-input-inline">
+                <select id="status">
+                    <option value="未收款">未收款</option>
+                    <option value="已收款">已收款</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" onclick="sendAddr()">立即提交</button>
+                <button type="reset" class="layui-btn">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+<script>
+
+</script>
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        //日期时间选择器
+        laydate.render({
+            elem: '#date'
+        });
+    });
+    function sendAddr(){
+        var str={};
+        str.salesman =$("#salesman").val();
+        str.name=$("#name").val();
+        str.phone =$("#phone").val() ;
+        str.requirement =$("#requirement").val() ;
+        str.money=$("#money").val();
+        str.date =$("#date").val() ;
+        str.status =$("#status").val() ;
+
+        postAjax(str,'/addOrder','text','application/json');
+    }
+</script>

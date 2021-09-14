@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+    <meta name="renderer" content="webkit">
+    <!--国产浏览器高速模式-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3241出品</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/local.js" ></script>
+</head>
+<body style="background-color: white">
+<p  align="center">显示订单</p>
+<table class="layui-hide" id="order" ></table>
+</body>
+<script>
+    var $ = layui.$,layer = layui.layer,form = layui.form;
+    var str = {};
+
+    layui.use('table', function(){
+        var table = layui.table;
+        table.render({
+            type:"GET",
+            elem: '#order'
+            ,url:'/getOrder'
+            ,title: 'nursery'
+            ,cols: [[
+                {field:'id', width:100, title:'id'}
+                ,{field:'salesman', width:150, title:'销售人员'}
+                ,{field:'name', width:140, title:'客户'}
+                ,{field:'phone', width:100, title:'联系电话'}
+                ,{field:'requirement', width:100, title:'所需服务'}
+                ,{field:'money', width:100, title:'收款金额'}
+                ,{field:'date', width:100, title:'预计收款金额'}
+                ,{field: 'status',width: 100,title: '状态'}
+            ]]
+            ,page: true
+            ,success:function (data) {
+                alert("成功");
+                console.log(data);
+            },
+            error:function (data) {
+                alert("失败");
+                console.log(data);
+            }
+        });
+    });
+</script>
+</html>
