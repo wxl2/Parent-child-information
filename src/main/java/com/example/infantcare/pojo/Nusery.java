@@ -6,7 +6,7 @@ public class Nusery {
     private int id;
     private String name;                //姓名
     private String imageurl;            //照片
-    private int age;                    //年龄
+    private String age;                    //年龄
     private String constellation;       //星座
     private String edulevel;            //学历
     private String marry;               //婚姻状况
@@ -20,7 +20,7 @@ public class Nusery {
         return id;
     }
 
-    public Nusery(int id, String name, String imageurl, int age, String constellation, String edulevel, String marry, String credential, int level, String reason, String work, String status) {
+    public Nusery(int id, String name, String imageurl, String age, String constellation, String edulevel, String marry, String credential, int level, String reason, String work, String status) {
         this.id = id;
         this.name = name;
         this.imageurl = imageurl;
@@ -56,11 +56,11 @@ public class Nusery {
         this.imageurl = imageurl;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

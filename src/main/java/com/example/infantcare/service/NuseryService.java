@@ -40,6 +40,16 @@ public class NuseryService {
             return null;
         }
     }
+
+    public List<Map<String,Object>> getDimission(){
+        try {
+            List<Map<String,Object>> list = nuseryMapper.getDimission();
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
     //  修改  员工从在职变为离职
     public int updateNursery(int id){
         try {

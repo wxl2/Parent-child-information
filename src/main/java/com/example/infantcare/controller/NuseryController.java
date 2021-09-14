@@ -25,7 +25,7 @@ public class NuseryController {
         Map<String,Object> map = new HashMap<String,Object>();
         JSONObject obj = JSON.parseObject(params);
         String name = obj.getString("name");
-        int age = obj.getInteger("age");
+        String age = obj.getString("age");
         String constellation = obj.getString("constellation");
         String edulevel = obj.getString("edulevel");
         String marry = obj.getString("marry");
@@ -96,7 +96,24 @@ public class NuseryController {
         return map;
     }
 
-
+    @GetMapping("/getDimission")
+    public Map<String,Object> getDimission(){
+        Map<String,Object> map = new HashMap<String,Object>();
+        List<Map<String,Object>> c_list = nuseryService.getDimission();
+        if(c_list == null){
+            map.put("code","-1");
+            map.put("msg","暂无数据");
+            map.put("count",0);
+            map.put("data","[]");
+        }
+        else{
+            map.put("code","0");
+            map.put("msg","ok");
+            map.put("count",c_list.size());
+            map.put("data",c_list);
+        }
+        return map;
+    }
     @PostMapping("/updateNursery")
     public String updateNursery(@RequestBody String id){
         Map<String,Object> map = new HashMap<String,Object>();

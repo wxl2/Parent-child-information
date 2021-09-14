@@ -14,12 +14,15 @@ public interface NuseryMapper {
             "`credential`, `level`, `reason`, `work`) VALUES (#{name}, #{imageurl}, #{age},#{constellation}, " +
             "#{edulevel},#{marry},#{credential}, #{level}, #{reason}, #{work})")
     public void insertNusery(Nusery nursery);
-    @Select("SELECT * FROM nursery")
+    @Select("SELECT id,`name`,imageurl,TIMESTAMPDIFF(YEAR,age,CURDATE())AS age,constellation, edulevel,marry,credential," +
+            "`level`,reason,`work`,`status` FROM nursery;")
     public List<Map<String,Object>> selectNuserys();
 
     @Select("SELECT * FROM nursery where status ='在职'")
     public List<Map<String,Object>> getEntrant();
 
+    @Select("SELECT * FROM nursery where status = '离职'")
+    public List<Map<String,Object>> getDimission();
 
     // 修改
     @Update("update nursery set status='离职' where id=#{id} ")
