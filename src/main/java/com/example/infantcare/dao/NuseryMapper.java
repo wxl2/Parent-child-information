@@ -37,7 +37,7 @@ public interface NuseryMapper {
     @Insert("INSERT INTO upgradetable(`id`, `oldlevel`, `newlevel`) VALUES (#{id},#{oldlevel},#{newlevel})")
     public void insertUpgradeTable(@Param("id") int id,@Param("oldlevel") int oldLevel,@Param("newlevel") int newLevel);
 
-    @Select("SELECT upgradetable.id,nursery.`name`,upgradetable.date,upgradetable.oldlevel,upgradetable.newlevel FROM " +
+    @Select("SELECT upgradetable.id,nursery.`name`,DATE_FORMAT(upgradetable.date,'%Y-%m-%d %H:%i:%S') date ,upgradetable.oldlevel,upgradetable.newlevel FROM " +
             "upgradetable,nursery WHERE upgradetable.id = nursery.id;")
     public List<Map<String,Object>> selectUpgradeRecord();
 }

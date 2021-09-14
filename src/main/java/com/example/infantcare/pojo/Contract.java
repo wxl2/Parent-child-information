@@ -8,7 +8,7 @@ public class Contract {
     private String confinement;                 //预产期
     private String requireDate;                 //需求时间
     private String requirement;                 //需求内容
-    private String nusery;                      //育婴师
+    private String nursery;                      //育婴师
 
     public int getId() {
         return id;
@@ -58,22 +58,22 @@ public class Contract {
         this.requirement = requirement;
     }
 
-    public String getNusery() {
-        return nusery;
+    public String getNursery() {
+        return nursery;
     }
 
-    public void setNusery(String nusery) {
-        this.nusery = nusery;
+    public void setNursery(String nursery) {
+        this.nursery = nursery;
     }
 
-    public Contract(int id, String name, String phone, String confinement, String requireDate, String requirement, String nusery) {
+    public Contract(int id, String name, String phone, String confinement, String requireDate, String requirement, String nursery) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.confinement = confinement;
         this.requireDate = requireDate;
         this.requirement = requirement;
-        this.nusery = nusery;
+        this.nursery = nursery;
     }
 
     public Contract() {
