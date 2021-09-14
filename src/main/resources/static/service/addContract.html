@@ -85,7 +85,7 @@
     </form>
 
     <div class="save-style">
-        <button type="button" onclick="sendAddr()" class="layui-btn layui-btn-fluid" ;>提交</button>
+        <button type="button" onclick="sendContract()" class="layui-btn layui-btn-fluid" ;>提交</button>
     </div>
 
 </div>
@@ -139,7 +139,7 @@
     };
     var $ = layui.$, layer = layui.layer, form = layui.form;
 
-    function sendAddr() {
+    function sendContract() {
         var str = {};
         str.name = $("#name").val();
         str.phone = $("#phone").val();

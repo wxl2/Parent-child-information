@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+  <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+  <meta name="renderer" content="webkit">
+  <!--国产浏览器高速模式-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3241出品</title>
+  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+  <script type="text/javascript" src="../layui/layui.js"></script>
+  <script type="text/javascript" src="../js/local.js" ></script>
+</head>
+<body style="background-color: white">
+<p  align="center">客户来访记录</p>
+<table class="layui-hide" id="visiting" ></table>
+</body>
+<script>
+  var $ = layui.$,layer = layui.layer,form = layui.form;
+  layui.use('table', function(){
+    var table = layui.table;
+    table.render({
+      type:"GET",
+      elem: '#visiting'
+      ,url:'/getVistings'
+      ,title: 'nursery'
+      ,cols: [[
+        ,{field:'name', width:50, title:'客户'}
+        ,{field:'phone', width:100, title:'联系电话'}
+        ,{field:'addr', width:100, title:'联系地址'}
+        ,{field:'requirement', width:100, title:'所需服务'}
+        ,{field:'content', width:100, title:'沟通内容'}
+        ,{field:'date', width:100, title:'预计收款金额'}
+        ,{field: 'worker',width: 100,title: '育婴师'}
+      ]]
+      ,page: true
+      ,success:function (data) {
+        alert("成功");
+        console.log(data);
+      },
+      error:function (data) {
+        alert("失败");
+        console.log(data);
+      }
+    });
+  });
+</script>
+</html>
