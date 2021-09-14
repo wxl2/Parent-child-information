@@ -14,7 +14,7 @@
   <script type="text/javascript" src="../js/local.js" ></script>
 </head>
 <body style="background-color: white">
-<p align="center">工作人员</p>
+<p align="center">离职人员</p>
 <table class="layui-hide" id="nursery" ></table>
 </body>
 <script type="text/html" id="imgtmp">
@@ -29,7 +29,7 @@
     table.render({
       type:"GET",
       elem: '#nursery'
-      ,url:'/'
+      ,url:'/getDimission'
       ,title: 'nursery'
       ,cols: [[
         {field:'id', width:100, title:'id'}
@@ -41,7 +41,7 @@
         ,{field:'marry', width:100, title:'婚姻状况'}
         ,{field:'credential', width:100, title:'证书'}
         ,{field:'level', width:100, title:'等级'}
-        ,{field:'status', width:100, title:'状态'}
+
       ]]
       ,page: true
       ,success:function (data) {

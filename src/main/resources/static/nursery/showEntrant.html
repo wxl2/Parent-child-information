@@ -17,7 +17,8 @@
 <p align="center">工作人员</p>
 <table class="layui-hide" id="nursery"  lay-filter="goodsType"></table>
 <script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-xs" lay-event="edit">离职</a>
+  <a class="layui-btn layui-btn-xs" lay-event="promote">晋升</a>
+  <a class="layui-btn layui-btn-xs" lay-event="dimission">离职</a>
 </script>
 </body>
 <style>
@@ -52,7 +53,7 @@
         ,{field:'marry', width:100, title:'婚姻状况'}
         ,{field:'credential', width:100, title:'证书'}
         ,{field:'level', width:100, title:'等级'}
-        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:100}
+        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:160}
       ]]
       ,page: true
       ,success:function (data) {
@@ -94,9 +95,15 @@
       var $ = layui.$, layer = layui.layer, form = layui.form;
       var params = {};
       params.id = data.id;
-      postAjax(params,'/updateNursery','text','application/json');
-        //修改按钮
+      //离职
+      if(obj.event=== 'dimission'){
+        postAjax(params,'/updateNursery','text','application/json');
         console.log(obj);
+      }else if(obj.event=== 'promote'){ // 晋升
+        params.level = data.level;
+        postAjax(params,'/updateLevel','text','application/json');
+      }
+
     });
   });
 </script>
