@@ -89,6 +89,12 @@
                        class="layui-input">
             </div>
         </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">员工生日</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="age" placeholder="yyyy-MM-dd">
+            </div>
+        </div>
         <div class="layui-form-item">
             <label class="layui-form-label">婚姻状况</label>
             <div class="layui-input-inline">
@@ -186,6 +192,15 @@
             error: function () {
                 layer.msg('操作失败');
             }
+        });
+    });
+</script>
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        //日期时间选择器
+        laydate.render({
+            elem: '#age'
         });
     });
 </script>
