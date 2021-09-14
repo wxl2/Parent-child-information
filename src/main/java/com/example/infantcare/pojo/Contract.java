@@ -8,7 +8,8 @@ public class Contract {
     private String confinement;                 //预产期
     private String requireDate;                 //需求时间
     private String requirement;                 //需求内容
-    private String nursery;                      //育婴师
+    private String nursery;                     //育婴师
+    private double conMoney;                       //合同金额
 
     public int getId() {
         return id;
@@ -66,7 +67,15 @@ public class Contract {
         this.nursery = nursery;
     }
 
-    public Contract(int id, String name, String phone, String confinement, String requireDate, String requirement, String nursery) {
+    public double getConMoney() {
+        return conMoney;
+    }
+
+    public void setConMoney(double conMoney) {
+        this.conMoney = conMoney;
+    }
+
+    public Contract(int id, String name, String phone, String confinement, String requireDate, String requirement, String nursery, double conMoney) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -74,6 +83,7 @@ public class Contract {
         this.requireDate = requireDate;
         this.requirement = requirement;
         this.nursery = nursery;
+        this.conMoney = conMoney;
     }
 
     public Contract() {

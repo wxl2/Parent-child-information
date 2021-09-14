@@ -27,7 +27,8 @@ public class ContractController {
         String requireDate = (String) map.get("requireDate");
         String requirement = (String) map.get("requirement");
         String nursery = (String) map.get("nursery");
-        Contract contract = new Contract(0, name, phone, confinement, requireDate, requirement, nursery);
+        Double conMoney = Double.parseDouble((String) map.get("conMoney"));
+        Contract contract = new Contract(0, name, phone, confinement, requireDate, requirement, nursery,conMoney);
         if (contractService.addContract(contract) < 0) {
             return "添加失败";
         }
