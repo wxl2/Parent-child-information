@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+  <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+  <meta name="renderer" content="webkit">
+  <!--国产浏览器高速模式-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3241出品</title>
+  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+  <script type="text/javascript" src="../layui/layui.js"></script>
+  <script type="text/javascript" src="../js/local.js" ></script>
+</head>
+<body style="background-color: white">
+<p align="center">员工生日</p>
+<table class="layui-hide" id="nursery"  lay-filter="goodsType"></table>
+</body>
+<script type="text/html" id="imgtmp">
+  <img src="../images/head/{{d.imageurl}}" width="28" height="28"  />
+</script>
+<script>
+  var $ = layui.$,layer = layui.layer,form = layui.form;
+  var str = {};
+
+  layui.use('table', function(){
+    var table = layui.table;
+    table.render({
+      type:"GET",
+      elem: '#nursery'
+      ,url:'/getBirthdayOff'
+      ,title: 'nursery'
+      ,cols: [[
+        {field:'name', width:150, title:'名字'}
+        ,{field:'off', width:300, title:'距离生日时间'}
+      ]]
+      ,page: true
+      ,success:function (data) {
+        alert("成功");
+        console.log(data);
+      },
+      error:function (data) {
+        alert("失败");
+        console.log(data);
+      },
+      done: function (res, curr, count) {
+        hoverOpenImg();//显示大图
+        $('table tr').on('click', function () {
+          $('table tr').css('background', '');
+          $(this).css('background', '<%=PropKit.use("config.properties").get("table_color")%>');
+        });
+      }
+    });
+  });
+</script>
+</html>

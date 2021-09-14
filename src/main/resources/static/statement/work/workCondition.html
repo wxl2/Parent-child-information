@@ -14,10 +14,10 @@
   <script type="text/javascript" src="../js/local.js" ></script>
 </head>
 <body style="background-color: white">
-<p align="center">工作人员</p>
-<table class="layui-hide" id="nursery"  lay-filter="goodsType"></table>
+<table class="layui-hide" id="work"  lay-filter="goodsType"></table>
 <script type="text/html" id="barDemo">
   <a class="layui-btn layui-btn-xs" lay-event="promote">晋升</a>
+  <a class="layui-btn layui-btn-xs" lay-event="dimission">离职</a>
 </script>
 </body>
 <script type="text/html" id="imgtmp">
@@ -31,20 +31,17 @@
     var table = layui.table;
     table.render({
       type:"GET",
-      elem: '#nursery'
-      ,url:'/getEntrant'
-      ,title: 'nursery'
+      elem: '#work'
+      ,url:'/'
+      ,title: 'work'
       ,cols: [[
         {field:'id', width:100, title:'id'}
         ,{field:'name', width:150, title:'名字'}
         ,{ field: 'imageurl', title: '照片',width: 120 , align: "center", templet: "#imgtmp"}
         ,{field:'age', width:140, title:'年龄'}
-        ,{field:'constellation', width:100, title:'星座'}
-        ,{field:'edulevel', width:100, title:'学历'}
         ,{field:'marry', width:100, title:'婚姻状况'}
-        ,{field:'credential', width:100, title:'证书'}
         ,{field:'level', width:100, title:'等级'}
-        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:160}
+        ,{field:'requiredate', width:100, title:'工作时间',sort:true}
       ]]
       ,page: true
       ,success:function (data) {
@@ -80,15 +77,6 @@
       });
       $('td img').attr('style', 'max-width:70px;display:block!important');
     }
-    //监听行工具事件
-    table.on('tool(goodsType)', function(obj) {
-      var data = obj.data;
-      var $ = layui.$, layer = layui.layer, form = layui.form;
-      var params = {};
-      params.id = data.id;
-      params.level = data.level;
-      postAjax(params, '/updateLevel', 'text', 'application/json');
-    });
   });
 </script>
 </html>

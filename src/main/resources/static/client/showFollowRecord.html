@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+    <meta name="renderer" content="webkit">
+    <!--国产浏览器高速模式-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3241出品</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/local.js" ></script>
+</head>
+<body style="background-color: white">
+<p align="center">跟进记录</p>
+<table class="layui-hide" id="nursery" ></table>
+</body>
+<script>
+    var $ = layui.$,layer = layui.layer,form = layui.form;
+    var str = {};
+
+    layui.use('table', function(){
+        var table = layui.table;
+        table.render({
+            type:"GET",
+            elem: '#nursery'
+            ,url:'/getFollowRecord'
+            ,title: 'nursery'
+            ,cols: [[
+                {field:'id', width:100, title:'id',sort:true}
+                ,{field:'name', width:150, title:'名字'}
+                ,{field:'recordTime', width:200, title:'交谈时间'}
+                ,{field:'contacts', width:100, title:'联系人'}
+                ,{field:'relation', width:160, title:'与客户的关系'}
+                ,{field:'communicate', width:360, title:'沟通内容'}
+            ]]
+            ,page: true
+            ,success:function (data) {
+                alert("成功");
+                console.log(data);
+            },
+            error:function (data) {
+                alert("失败");
+                console.log(data);
+            },
+        });
+    });
+</script>
+</html>

@@ -50,4 +50,23 @@ public class ClientInfoController {
         }
         return map;
     }
+
+    @GetMapping("/getFollowRecord")
+    public Map<String,Object> getFollowRecord(){
+        Map<String,Object> map = new HashMap<String,Object>();
+        List<Map<String,Object>>  c_list = clientInfoService.getFollowRecord();
+        if(c_list == null){
+            map.put("code","-1");
+            map.put("msg","暂无数据");
+            map.put("count",0);
+            map.put("data","[]");
+        }
+        else{
+            map.put("code","0");
+            map.put("msg","ok");
+            map.put("count",c_list.size());
+            map.put("data",c_list);
+        }
+        return map;
+    }
 }
