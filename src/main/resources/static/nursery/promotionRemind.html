@@ -36,12 +36,12 @@
       ,title: 'nursery'
       ,cols: [[
         {field:'id', width:100, title:'id'}
-        ,{field:'name', width:150, title:'名字'}
-        ,{field:'data', width:150, title:'上次晋升时间'}
-        ,{field:'oldlevel', width:140, title:'原等级'}
+        ,{field:'name', width:100, title:'名字'}
+        ,{field:'date', width:230, title:'上次晋升时间'}
+        ,{field:'oldlevel', width:100, title:'原等级'}
         ,{field:'newlevel', width:100, title:'现等级'}
-        ,{field:'off', width:100, title:'距离上次晋升(天)'}
-        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:160}
+        ,{field:'off', width:160, title:'距离上次晋升(天)'}
+        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:100}
       ]]
       ,page: true
       ,success:function (data) {
