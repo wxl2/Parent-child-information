@@ -128,12 +128,31 @@ public class NuseryController {
     @PostMapping("/updateLevel")
     public String updateLevel(@RequestBody String text){
         JSONObject obj = JSON.parseObject(text);
-        int level = obj.getInteger("level");
+        int level = obj.getInteger("level") + 1;
         if(level>5)
             return "最大等级为5";
         int id = obj.getInteger("id");
         if(nuseryService.updateLevel(id,level) < 0)
             return "操作失败";
         return "操作成功";
+    }
+
+    @GetMapping("/getUpgradeRecord")
+    public Map<String,Object> getUpgradeRecord(){
+        Map<String,Object> map = new HashMap<String,Object>();
+        List<Map<String,Object>> c_list = nuseryService.getUpgradeRecord();
+        if(c_list == null){
+            map.put("code","-1");
+            map.put("msg","暂无数据");
+            map.put("count",0);
+            map.put("data","[]");
+        }
+        else{
+            map.put("code","0");
+            map.put("msg","ok");
+            map.put("count",c_list.size());
+            map.put("data",c_list);
+        }
+        return map;
     }
 }

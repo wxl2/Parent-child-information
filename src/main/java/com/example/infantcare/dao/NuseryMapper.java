@@ -31,4 +31,10 @@ public interface NuseryMapper {
 
     @Update("UPDATE nursery SET `level` = #{level} WHERE `id` = #{id} ")
     public int updateLevel(@Param("id") int id,@Param("level") int level);
+
+    @Insert("INSERT INTO upgradetable(`id`, `oldlevel`, `newlevel`) VALUES (#{id},#{oldlevel},#{newlevel})")
+    public void insertUpgradeTable(@Param("id") int id,@Param("oldlevel") int oldLevel,@Param("newlevel") int newLevel);
+
+    @Select("SELECT * FROM upgradetable")
+    public List<Map<String,Object>> selectUpgradeRecord();
 }
