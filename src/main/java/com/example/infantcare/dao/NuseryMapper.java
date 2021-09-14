@@ -18,13 +18,17 @@ public interface NuseryMapper {
             "`level`,reason,`work`,`status` FROM nursery;")
     public List<Map<String,Object>> selectNuserys();
 
-    @Select("SELECT * FROM nursery where status ='在职'")
+    @Select("SELECT id,`name`,imageurl,TIMESTAMPDIFF(YEAR,age,CURDATE())AS age,constellation, edulevel,marry,credential," +
+            " `level`,reason,`work`,`status` FROM nursery where status ='在职'")
     public List<Map<String,Object>> getEntrant();
 
-    @Select("SELECT * FROM nursery where status = '离职'")
+    @Select("SELECT id,`name`,imageurl,TIMESTAMPDIFF(YEAR,age,CURDATE())AS age,constellation, edulevel,marry,credential," +
+            " `level`,reason,`work`,`status` FROM nursery where status = '离职'")
     public List<Map<String,Object>> getDimission();
-
     // 修改
     @Update("update nursery set status='离职' where id=#{id} ")
     public int updateNursery(@Param("id") int id);
+
+    @Update("UPDATE nursery SET `level` = #{level} WHERE `id` = #{id} ")
+    public int updateLevel(@Param("id") int id,@Param("level") int level);
 }

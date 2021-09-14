@@ -61,4 +61,14 @@ public class NuseryService {
         }
     }
 
+    public int updateLevel(int id,int level){
+        try {
+            nuseryMapper.updateLevel(id,level);
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+        return 0;
+    }
+
 }
