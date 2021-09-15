@@ -1,5 +1,7 @@
 package com.example.infantcare.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.infantcare.pojo.Contract;
 import com.example.infantcare.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +55,23 @@ public class ContractController {
         return map;
     }
 
+    // getNursery_working
+    @GetMapping("/getResume")
+    public Map<String, Object> getResume(@RequestBody String map_) {
+        JSONObject obj = JSON.parseObject(map_);
+        Map<String, Object> map = new HashMap<>();
+        List<Map<String, Object>> c_list = contractService.getResume(obj.getInteger("page"),obj.getInteger("pagesize"));
+        if (c_list == null) {
+            map.put("code", "-1");
+            map.put("msg", "暂无数据");
+            map.put("count", 0);
+            map.put("data", "[]");
+        } else {
+            map.put("code", "0");
+            map.put("msg", "ok");
+            map.put("count", c_list.size());
+            map.put("data", c_list);
+        }
+        return map;
+    }
 }

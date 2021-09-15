@@ -14,26 +14,29 @@
   <script type="text/javascript" src="../js/local.js" ></script>
 </head>
 <body style="background-color: white">
-<p  align="center">客户来访记录</p>
-<table class="layui-hide" id="visiting" ></table>
+<p  align="center">显示订单</p>
+<table class="layui-hide" id="order" ></table>
 </body>
 <script>
   var $ = layui.$,layer = layui.layer,form = layui.form;
+  var str = {};
+
   layui.use('table', function(){
     var table = layui.table;
     table.render({
       type:"GET",
-      elem: '#visiting'
-      ,url:'/getVistings'
+      elem: '#order'
+      ,url:'/'
       ,title: 'nursery'
       ,cols: [[
-        ,{field:'name', width:50, title:'客户'}
+        {field:'id', width:100, title:'id'}
+        ,{field:'salesman', width:150, title:'销售人员'}
+        ,{field:'name', width:140, title:'客户'}
         ,{field:'phone', width:100, title:'联系电话'}
-        ,{field:'addr', width:100, title:'联系地址'}
         ,{field:'requirement', width:100, title:'所需服务'}
-        ,{field:'content', width:100, title:'沟通内容'}
+        ,{field:'money', width:100, title:'收款金额'}
         ,{field:'date', width:100, title:'需求时间'}
-        ,{field: 'worker',width: 100,title: '育婴师'}
+        ,{field: 'status',width: 100,title: '状态'}
       ]]
       ,page: true
       ,success:function (data) {

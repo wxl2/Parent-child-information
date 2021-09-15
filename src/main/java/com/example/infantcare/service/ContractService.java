@@ -35,5 +35,16 @@ public class ContractService {
             return null;
         }
     }
+    //getResume获取简历信息
+    //  获取育婴师表中的id,名字，图片地址
+    public List<Map<String,Object>> getResume(int page,int pageSize){
+        try {
+            List<Map<String,Object>> list = contractMapper.selectNursery(page,pageSize);
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }
