@@ -47,4 +47,14 @@ public class ContractService {
         }
     }
 
+    public Map<String,Object> getIdNursery(int id){
+        try {
+            Map<String,Object> map = contractMapper.getIdNursery(id);
+            return map;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

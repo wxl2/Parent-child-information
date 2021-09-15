@@ -142,20 +142,20 @@
         lastSize = size;
         // 轮播图
         for (let i = 0; i < 3 && i < size; i++) {
-            let name = data[i].name;
+            let id = data[i].id;
             let url = "../images/head/" + data[i].imageurl;
             let idImg = "Runimg" + i;
             $("#" + idImg).attr("src", url);
-            $("#" + idImg).attr("title", name);
+            $("#" + idImg).attr("title", id);
         }
 
         //  img
         for (let i = 0; i < size && i < 12; i++) {
-            let name = data[i].name;
+            let id = data[i].id;
             let url = "../images/head/" + data[i].imageurl;
             let idImg = "img" + i;
             $("#" + idImg).attr("src", url);
-            $("#" + idImg).attr("title", name);
+            $("#" + idImg).attr("title", id);
         }
     }
     function nextInfo(){

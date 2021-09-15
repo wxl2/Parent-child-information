@@ -83,10 +83,10 @@
 </body>
 </html>
 <script>
-    //根据id查找对象，
+   /* //根据id查找对象，                 //           添加下拉框查看育婴师空闲的时间
     var obj = document.getElementById('mySelect');
     //添加一个选项
-    obj.add(new Option("文本", "值"));    //方法一：
+    obj.add(new Option("文本", "值"));    //方法一：*/
 </script>
 <script>
     var $ = layui.jquery;
@@ -103,12 +103,23 @@
             data: {"id": id},
             dataType: 'json',
             success: function (data) {
-
+                LodeNursery(data.data);
             },
             error: function () {
                 alert("error");
             }
         });
+    }
+    /*数据渲染*/
+    function LodeNursery(data){
+        $("#name").attr("value",data.name);
+        $("#imageurl").attr("src",data.imageurl);
+        $("#age").attr("value",data.age);
+        $("#edulevel").attr("value",data.edulevel);
+        $("#marry").attr("value",data.marry);
+        $("#credential").attr("value",data.credential);
+        $("#reason").attr("value",data.reason);
+        $("#work").attr("value",data.work);
     }
 
 </script>

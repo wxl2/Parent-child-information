@@ -72,4 +72,22 @@ public class ContractController {
         }
         return map;
     }
+
+    @GetMapping("/getIdNursery")
+    public Map<String, Object> getIdNursery(@RequestParam("id")int id) {
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> c_map = contractService.getIdNursery(id);
+        if (c_map == null) {
+            map.put("code", "-1");
+            map.put("msg", "暂无数据");
+            map.put("count", 0);
+            map.put("data", "[]");
+        } else {
+            map.put("code", "0");
+            map.put("msg", "ok");
+            map.put("count", 1);
+            map.put("data", c_map);
+        }
+        return map;
+    }
 }
