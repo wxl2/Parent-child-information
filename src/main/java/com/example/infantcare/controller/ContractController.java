@@ -5,11 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.infantcare.pojo.Contract;
 import com.example.infantcare.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,12 +53,12 @@ public class ContractController {
         return map;
     }
 
-    // getNursery_working
+
     @GetMapping("/getResume")
-    public Map<String, Object> getResume(@RequestBody String map_) {
-        JSONObject obj = JSON.parseObject(map_);
+    public Map<String, Object> getResume(@RequestParam("page")int page,
+                                         @RequestParam("limit")int limit) {
         Map<String, Object> map = new HashMap<>();
-        List<Map<String, Object>> c_list = contractService.getResume(obj.getInteger("page"),obj.getInteger("pagesize"));
+        List<Map<String, Object>> c_list = contractService.getResume(page,limit);
         if (c_list == null) {
             map.put("code", "-1");
             map.put("msg", "暂无数据");

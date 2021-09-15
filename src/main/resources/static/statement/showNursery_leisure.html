@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+  <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+  <meta name="renderer" content="webkit">
+  <!--国产浏览器高速模式-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3241出品</title>
+  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+  <script type="text/javascript" src="../layui/layui.js"></script>
+  <script type="text/javascript" src="../js/local.js" ></script>
+</head>
+<body style="background-color: white">
+<p  align="center"></p>
+<table class="layui-hide" id="show" ></table>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>添加育婴师的空闲时间</legend>
+</fieldset>
+<div style="margin-left: 50px;">
+  <form class="layui-form layui-form-pane">
+    <div class="layui-form-item">
+      <label class="layui-form-label">育婴师id</label>
+      <div class="layui-input-inline">
+        <input type="text" id="id"  name="name" lay-verify="required" placeholder="请输入育婴师id"
+               value="" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">育婴师</label>
+      <div class="layui-input-inline">
+        <input type="text" id="name"  name="name" lay-verify="required" placeholder="请输入育婴师名称"
+               value="" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-inline">
+      <label class="layui-form-label">开始时间</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input" id="starttime" placeholder="请输入开始时间">
+      </div>
+    </div>
+    <div class="layui-inline">
+      <label class="layui-form-label">结束时间</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input" id="endtime" placeholder="请输入结束时间">
+      </div>
+    </div>
+  </form>
+  <div class="save-style" style=" margin-top: 17px;width: 296px;">
+    <button type="button" onclick="sendLeisureInfo()" class="layui-btn layui-btn-fluid" ;>提交</button>
+  </div>
+</div>
+</body>
+<script>
+  var $ = layui.$,layer = layui.layer,form = layui.form;
+
+  layui.use('table', function(){
+    var table = layui.table;
+    table.render({
+      type:"GET",
+      elem: '#show'
+      ,url:'/getLeisure'
+      ,title: 'nursery_working'
+      ,cols: [[
+        {field:'id', width:100, title:'id'}
+        ,{field:'name', width:150, title:'育婴师'}
+        ,{field:'imageurl', width:100, title:'照片'}
+        ,{field:'level', width:100, title:'等级'}
+        ,{field:'nursery_addr', width:100, title:'居住地'}
+        ,{field:'starttime', width:200, title:'开始时间'}
+        ,{field:'endtime', width:200, title:'结束时间'}
+      ]]
+      ,page: true
+      ,success:function (data) {
+        alert("成功");
+        console.log(data);
+      },
+      error:function (data) {
+        alert("失败");
+        console.log(data);
+      }
+    });
+  });
+</script>
+</html>
+
+<!--时间选择框-->
+<script src="../layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
+<script>
+  layui.use('laydate', function () {
+    var laydate = layui.laydate;
+    //时间选择器
+    laydate.render({
+      elem: '#starttime'
+      ,type: 'time'
+    });
+    laydate.render({
+      elem: '#endtime'
+      ,type: 'time'
+    });
+  });
+</script>
+<script>
+  var $ = layui.$,layer = layui.layer,form = layui.form;
+  function sendLeisureInfo(){
+    var str={};
+    str.id =$("#id").val();
+    str.name=$("#name").val();
+    str.starttime =$("#starttime").val() ;
+    str.endtime =$("#endtime").val() ;
+    postAjax(str,'/addLeisure','text','application/json');
+  }
+</script>

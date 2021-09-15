@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../layui/css/layui.css"/>
+    <link rel="stylesheet" href="../css/local.css"/>
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="bookmark" href="../images/favicon.ico"/>
+    <script src="../layui/layui.js"></script>
+    <script src="../layui/layui.js" type="text/javascript"></script>
+    <script src="../js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="../js/local.js" type="text/javascript"></script>
+    <script src="../js/jquery-ui-1.10.4.min.js"></script>
+    <script src="../js/jquery.mousewheel.min.js"></script>
+    <script src="../js/jquery.mCustomScrollbar.min.js"></script>
+</head>
+<body onload="getNursery()">
+<div style="width: 100%;text-align: center">
+    <div style="width: 30%;display: inline-block">
+        <img src="../images/head/2021-09-13-22-25-50-test2.jpg" style="height: 488px;width: 455px;">
+    </div>
+    <div style="position: relative;display: inline-block;top: 94px;">
+        <form class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">名字</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="name" disabled="disabled" name="" lay-verify="required"
+                            value="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="age" disabled="disabled" name="username" lay-verify="required"
+                            value="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">婚姻状况</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="marry" disabled="disabled"  lay-verify="required"
+                            value="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">学历</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="edulevel" disabled="disabled"  lay-verify="required"
+                            value="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">推荐理由：</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="reason" disabled="disabled"  lay-verify="required"
+                           value="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">工作经历：</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="work" disabled="disabled"  lay-verify="required"
+                            value="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item" >
+                <div class="layui-btn-container">
+                    <button type="button" class="layui-btn layui-btn-warm layui-btn-radius">预约</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</form>
+</div>
+</div>
+</body>
+</html>
+<script>
+    var $ = layui.jquery;
+
+    function getNursery() {
+        // 解析出商品id
+        let loc = location.href;
+        let n1 = loc.length;
+        let n2 = loc.indexOf('=');
+        let id = decodeURI(loc.substr(n2 + 1, n1 - n2));
+        $.ajax({
+            type: "GET",
+            url: "/getIdNursery",
+            data: {"id": id},
+            dataType: 'json',
+            success: function (data) {
+
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+
+</script>
