@@ -58,11 +58,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">需求内容</label>
             <div class="layui-input-inline">
-                <input type="text" id="requirement" name="requirement" lay-verify="required"
-                       placeholder="请输入需求内容" value="" autocomplete="off" class="layui-input">
+                <select id="requirement">
+                    <option value="育婴">育婴</option>
+                    <option value="照顾孕妇">照顾孕妇</option>
+                    <option value="保姆">保姆</option>
+                </select>
             </div>
         </div>
-
         <div class="layui-form-item">
             <label class="layui-form-label">育婴师</label>
             <div class="layui-input-inline">
@@ -133,4 +135,12 @@
         str.conMoney = $("#conmoney").val();
         postAjax(str, '/addContract', 'text', 'application/json');
     }
+</script>
+<script>
+    var laydate = layui.laydate;
+
+    //常规用法
+    laydate.render({
+        elem: '#confinement'
+    });
 </script>
