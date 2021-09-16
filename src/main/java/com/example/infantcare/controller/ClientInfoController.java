@@ -21,7 +21,7 @@ public class ClientInfoController {
     ClientInfoService clientInfoService;
     @PostMapping("/addClientInfo")
     public String addClientInfo(@RequestBody Map<String,Object> map){
-        String name =( String) map.get("name");
+        String name = (String) map.get("name");
         String inviter =(String) map.get("inviter");
         String phone =( String) map.get("phone");
         String appointment =( String) map.get("appointment");
