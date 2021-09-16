@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+    <meta name="renderer" content="webkit">
+    <!--国产浏览器高速模式-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3241出品</title>
+
+    <!-- 公共样式 开始 -->
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+    <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <!-- 公共样式 结束 -->
+    <style>
+        .layui-form-label {
+            width: 100px;
+        }
+
+        .layui-input-block {
+            margin-left: 130px;
+        }
+
+        .layui-form {
+            margin-right: 30%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="cBody">
+    <form class="layui-form" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司邮箱：</label>
+            <div class="layui-input-inline">
+                <input id="firmMail" type="text" name="" autocomplete="off" placeholder="请输入公司邮箱账号" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">授权码：</label>
+            <div class="layui-input-inline">
+                <input id="password" type="text" name="" autocomplete="off" placeholder="请输入..." value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">客服邮箱</label>
+            <div class="layui-input-inline">
+                <input id="clientMail" type="text" name="" autocomplete="off" placeholder="请输入客户邮箱" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">邮件内容：</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="textContent" placeholder="请输入邮件内容">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="submitBut" onclick="return false">立即提交</button>
+                <button type="reset" class="layui-btn">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+<script>
+
+    layui.use(['upload', 'form'], function () {
+        var form = layui.form;
+        var upload = layui.upload;
+        var layer = layui.layer;
+
+        /*layui图片上传*/
+        upload.render({
+            elem: '#imageurl',
+            url: '/addNusery',
+            accept: "images",
+            acceptMime: "image/*",    //acceptMime: 'image/*'（只显示图片文件）
+            bindAction: '#submitBut',
+            auto: false,
+            data: {
+                params: ''
+            },
+            before: function (obj) {
+                var map = {};
+                map.name = $('#name').val();
+                // map.imageurl=$('#imageurl').val();
+                map.age = $('#age').val();
+                map.constellation = $('#constellation').val();
+                map.edulevel = $('#edulevel').val();
+                map.marry = $('#marry').val();
+                map.credential = $('#credential').val();
+                map.level = $('#level').val();
+                map.reason = $('#reason').val();
+                map.work = $('#work').val();
+                this.data.params = JSON.stringify(map);
+            },
+            choose: function (obj) {
+                obj.preview(function (index, file, result) {      // 展示
+                    $('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', result);
+                });
+            },
+            done: function (res) {
+                location.reload();
+                if (res.code == 0)
+                    layer.msg('操作成功');
+
+            },
+            error: function () {
+                layer.msg('操作失败');
+            }
+        });
+    });
+</script>
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        //日期时间选择器
+        laydate.render({
+            elem: '#age'
+        });
+    });
+</script>
