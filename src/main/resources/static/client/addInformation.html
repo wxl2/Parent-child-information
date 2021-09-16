@@ -101,5 +101,6 @@
         str.phone =$("#phone").val() ;
         str.appointment =$("#appointment").val() ;
         postAjax(str,'/addClientInfo','text','application/json');
+        location.reload();
     }
 </script>

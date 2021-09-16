@@ -18,6 +18,7 @@ public interface ContractMapper {
     @Select("SELECT a.id,a.`name`,a.imageurl FROM `nursery` as a where status = '在职' limit #{page},#{pageSize}")
     public List<Map<String,Object>> selectNursery(@Param("page") int page,@Param("pageSize") int pageSize);
     //  通过id获取育婴师简历
-    @Select("select * from nursery where id=#{id}")
+    @Select("select id,`name`,imageurl,TIMESTAMPDIFF(YEAR,age,CURDATE())AS age,constellation, edulevel,marry,credential," +
+            " `level`,reason,`work`,`status`  from nursery where id=#{id}")
     public Map<String,Object> getIdNursery(@Param("id") int id);
 }

@@ -98,12 +98,12 @@
       //离职
       if(obj.event=== 'dimission'){
         postAjax(params,'/updateNursery','text','application/json');
-        console.log(obj);
+        location.reload();
       }else if(obj.event=== 'promote'){ // 晋升
         params.level = data.level;
         postAjax(params,'/updateLevel','text','application/json');
+        location.reload();
       }
-
     });
   });
 </script>
