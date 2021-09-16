@@ -69,5 +69,16 @@ public class ClientInfoController {
         }
         return map;
     }
-    // 邮件发送请求
+    // 邮件发送请求sendSimpleMail
+    @PostMapping("/sendSimpleMail")
+    public String sendSimpleMail(@RequestBody Map<String,Object> map){
+        String firmMail =( String) map.get("firmMail");
+        String password =(String) map.get("password");
+        String clientMail =( String) map.get("clientMail");
+        String textContent =( String) map.get("textContent");
+        if(clientInfoService.sendSimpleMail(firmMail,password,clientMail,textContent)<0){
+            return "发送失败";
+        }
+        return "发送成功";
+    }
 }

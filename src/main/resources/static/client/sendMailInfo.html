@@ -35,7 +35,7 @@
 
 <body>
 
-<div class="cBody">
+<div class="cBody" style="text-align: center">
     <form class="layui-form" >
         <div class="layui-form-item">
             <label class="layui-form-label">公司邮箱：</label>
@@ -66,7 +66,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button type="button" class="layui-btn" id="submitBut" onclick="return false">立即提交</button>
+                <button type="button" class="layui-btn"  onclick="sendSubmit()">立即提交</button>
                 <button type="reset" class="layui-btn">重置</button>
             </div>
         </div>
@@ -75,60 +75,24 @@
 </body>
 </html>
 <script>
+    var $ = layui.$,layer = layui.layer,form = layui.form;
+    function sendSubmit(){
+        let data = {};
+         data.firmMail = $("#firmMail").val();
+         password = $("#password").val();
+         clientMail = $("#clientMail").val();
+         textContent = $("#textContent").val();
 
-    layui.use(['upload', 'form'], function () {
-        var form = layui.form;
-        var upload = layui.upload;
-        var layer = layui.layer;
-
-        /*layui图片上传*/
-        upload.render({
-            elem: '#imageurl',
-            url: '/addNusery',
-            accept: "images",
-            acceptMime: "image/*",    //acceptMime: 'image/*'（只显示图片文件）
-            bindAction: '#submitBut',
-            auto: false,
-            data: {
-                params: ''
+        $.ajax({
+            type:'post',
+            url:"/sendSimpleMail",
+            data:data,
+            success:function (data) {
+                layer.alert(data);
             },
-            before: function (obj) {
-                var map = {};
-                map.name = $('#name').val();
-                // map.imageurl=$('#imageurl').val();
-                map.age = $('#age').val();
-                map.constellation = $('#constellation').val();
-                map.edulevel = $('#edulevel').val();
-                map.marry = $('#marry').val();
-                map.credential = $('#credential').val();
-                map.level = $('#level').val();
-                map.reason = $('#reason').val();
-                map.work = $('#work').val();
-                this.data.params = JSON.stringify(map);
-            },
-            choose: function (obj) {
-                obj.preview(function (index, file, result) {      // 展示
-                    $('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', result);
-                });
-            },
-            done: function (res) {
-                location.reload();
-                if (res.code == 0)
-                    layer.msg('操作成功');
-
-            },
-            error: function () {
-                layer.msg('操作失败');
+            error:function (data) {
+                layer.alert("请求超时！")
             }
         });
-    });
-</script>
-<script>
-    layui.use('laydate', function () {
-        var laydate = layui.laydate;
-        //日期时间选择器
-        laydate.render({
-            elem: '#age'
-        });
-    });
+    }
 </script>

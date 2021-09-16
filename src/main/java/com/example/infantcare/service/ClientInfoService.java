@@ -10,6 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.mail.util.MailSSLSocketFactory;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
 @Service("ClientInfoService")
 public class ClientInfoService {
     @Autowired
@@ -45,6 +52,11 @@ public class ClientInfoService {
             e.printStackTrace();
             return null;
         }
+    }
+    // 发送邮件sendSimpleMail
+    public int sendSimpleMail(String firmMail,String password,String clientMail,String textContent){
+
+        return 0;
     }
 
 }
