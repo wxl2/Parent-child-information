@@ -35,8 +35,8 @@
 
 <body>
 
-<div class="cBody" style="text-align: center">
-    <form class="layui-form" >
+<div class="cBody">
+    <form class="layui-form">
         <div class="layui-form-item">
             <label class="layui-form-label">公司邮箱：</label>
             <div class="layui-input-inline">
@@ -64,9 +64,16 @@
                 <input type="text" class="layui-input" id="textContent" placeholder="请输入邮件内容">
             </div>
         </div>
+        <br>
+        <div class="layui-inline">
+            <label class="layui-form-label">邮件内容：</label>
+            <div class="layui-input-block">
+                <textarea id="textMail" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button type="button" class="layui-btn"  onclick="sendSubmit()">立即提交</button>
+                <button type="button" class="layui-btn" onclick="sendSubmit()">发送</button>
                 <button type="reset" class="layui-btn">重置</button>
             </div>
         </div>
@@ -75,22 +82,27 @@
 </body>
 </html>
 <script>
-    var $ = layui.$,layer = layui.layer,form = layui.form;
-    function sendSubmit(){
+    var $ = layui.$, layer = layui.layer, form = layui.form;
+
+    function sendSubmit() {
         let data = {};
-         data.firmMail = $("#firmMail").val();
-         password = $("#password").val();
-         clientMail = $("#clientMail").val();
-         textContent = $("#textContent").val();
+        data.firmMail = $("#firmMail").val();
+        data.password = $("#password").val();
+        data.clientMail = $("#clientMail").val();
+       // data.textContent = $("#textContent").val();
+        data.data.textContent = $("#textMail").val();
 
         $.ajax({
-            type:'post',
-            url:"/sendSimpleMail",
-            data:data,
-            success:function (data) {
+            type: 'post',
+            url: "/sendSimpleMail",
+            dataType: "text",
+            async: false,
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data) {
                 layer.alert(data);
             },
-            error:function (data) {
+            error: function (data) {
                 layer.alert("请求超时！")
             }
         });

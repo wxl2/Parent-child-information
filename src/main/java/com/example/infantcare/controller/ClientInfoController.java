@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -76,9 +77,15 @@ public class ClientInfoController {
         String password =(String) map.get("password");
         String clientMail =( String) map.get("clientMail");
         String textContent =( String) map.get("textContent");
-        if(clientInfoService.sendSimpleMail(firmMail,password,clientMail,textContent)<0){
-            return "发送失败";
+        int result =0;
+        try {
+            result = clientInfoService.sendSimpleMail(firmMail,password,clientMail,textContent);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        if(result < 0){
+            return "发送失败";
+        }else
         return "发送成功";
     }
 }
