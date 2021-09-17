@@ -3,6 +3,7 @@ package com.example.infantcare.dao;
 import com.example.infantcare.pojo.NuseryLeusyre;
 import com.example.infantcare.pojo.NuseryWorking;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -25,4 +26,8 @@ public interface NuseryWorkingMapper {
 
     @Select("SELECT * FROM nursery_leisure")
     public List<Map<String,Object>> selecttNeseryLeysyre();
+
+    @Select("SELECT DATE_FORMAT(date,'%Y-%m-%d') FROM `infantCare`.`nursery_working` WHERE date BETWEEN NOW() AND " +
+            "DATE_ADD(NOW(),INTERVAL 7 DAY) and id = #{id}")
+    public List<String> selectWorkerTime(@Param("id") int id);
 }

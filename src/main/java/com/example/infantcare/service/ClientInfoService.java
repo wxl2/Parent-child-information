@@ -11,8 +11,8 @@ import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.mail.util.MailSSLSocketFactory;
 
+<<<<<<< HEAD
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.*;
@@ -21,6 +21,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
+=======
+>>>>>>> c4ffca064aa8ba1897b5e23fe73b36b8ec693304
 
 
 @Service("ClientInfoService")

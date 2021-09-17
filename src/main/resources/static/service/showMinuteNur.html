@@ -103,7 +103,7 @@
         let nurseryId = decodeURI(loc.substr(n2 + 1, n1 - n2));
         $.ajax({
             type: "GET",
-            url: "/getIdNursery",
+            url: "/getWorkerFree",
             data: {"id": nurseryId},
             dataType: 'json',
             success: function (data) {
