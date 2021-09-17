@@ -4,6 +4,7 @@ import com.example.infantcare.dao.ClientInfoMapper;
 import com.example.infantcare.dao.UserDao;
 import com.example.infantcare.pojo.ClientInfo;
 import com.example.infantcare.pojo.User;
+import com.sun.mail.util.MailSSLSocketFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,6 @@ import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Map;
 
-
-<<<<<<< HEAD
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.*;
@@ -21,8 +20,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
-=======
->>>>>>> c4ffca064aa8ba1897b5e23fe73b36b8ec693304
+
 
 
 @Service("ClientInfoService")
@@ -65,7 +63,7 @@ public class ClientInfoService {
 
     // 发送邮件sendSimpleMail
     public int sendSimpleMail(String firmMail, String password, String clientMail, String textContent)  {
-                        // passwprd ="rwpavvxjjyfzcjhe";
+        // passwprd ="rwpavvxjjyfzcjhe";
         Properties prop = new Properties();
         prop.setProperty("mail.host", "smtp.qq.com");  //设置QQ邮件服务器
         prop.setProperty("mail.transport.protocol", "smtp"); // 邮件发送协议
