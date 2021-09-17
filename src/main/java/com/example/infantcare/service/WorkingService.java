@@ -53,4 +53,14 @@ public class WorkingService {
             return null;
         }
     }
+
+    public List<String> getWorkerTimes(int id){
+        try {
+            List<String> list = nuseryWorkingMapper.selectWorkerTime(id);
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
