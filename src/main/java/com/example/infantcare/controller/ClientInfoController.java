@@ -2,6 +2,7 @@ package com.example.infantcare.controller;
 
 
 import com.example.infantcare.pojo.ClientInfo;
+import com.example.infantcare.pojo.FollowRecord;
 import com.example.infantcare.service.ClientInfoService;
 import com.example.infantcare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.util.Map;
 public class ClientInfoController {
     @Autowired
     ClientInfoService clientInfoService;
+
     @PostMapping("/addClientInfo")
     public String addClientInfo(@RequestBody Map<String,Object> map){
         String name =( String) map.get("name");
@@ -87,5 +89,28 @@ public class ClientInfoController {
             return "发送失败";
         }else
         return "发送成功";
+    }
+
+    //添加回访记录addClientRecord
+    @PostMapping("/addClientRecord")
+    public String addClientRecord(@RequestBody Map<String,Object> map){
+        /**
+         * 第一种方法：i=Integer.parseInt(s);//默认十进制
+         * 第二种方法：i=Integer.valueOf(s).intValue();*/
+        int id = 0;
+        try {
+            id = Integer.valueOf(( String) map.get("clientId")).intValue();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        String chatTime =( String) map.get("chatTime");
+        String content =(String) map.get("content");
+        String contacts =( String) map.get("contacts");
+        String relation =( String) map.get("relation");
+        FollowRecord info = new FollowRecord(id,chatTime,content,contacts,relation);
+        if(clientInfoService.addClientRecord(info)<0){
+            return "添加失败";
+        }
+        return "添加成功";
     }
 }

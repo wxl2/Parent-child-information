@@ -16,6 +16,57 @@
 <body style="background-color: white">
 <p align="center">跟进记录</p>
 <table class="layui-hide" id="nursery" ></table>
+<div class="cBody">
+    <form class="layui-form" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户id</label>
+            <div class="layui-input-inline">
+                <input id="clientId" type="text" name="" autocomplete="off" placeholder="请输入客户id" value=""
+                       class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">交谈时间</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="chatTime" placeholder="yyyy-MM-dd HH:mm:ss">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系人:</label>
+            <div class="layui-input-inline">
+                <input id="contacts" type="text" name="" autocomplete="off" placeholder="请输入此次沟通到的联系人" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户与联系人关系:</label>
+            <div class="layui-input-inline">
+                <select id="relation">
+                    <option value="妻子">妻子</option>
+                    <option value="家人">家人</option>
+                    <option value="亲戚">亲戚</option>
+                    <option value="朋友">朋友</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-inline" style="margin-bottom: 40px;">
+            <label class="layui-form-label">沟通内容：</label>
+            <div class="layui-input-block">
+                <textarea id="content" placeholder="请输入内容... " class="layui-textarea"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn"  onclick="sendRecord()">提交</button>
+                <button type="reset" class="layui-btn">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 <script>
     var $ = layui.$,layer = layui.layer,form = layui.form;
@@ -46,6 +97,38 @@
                 console.log(data);
             },
         });
+    });
+
+    var $ = layui.$,layer = layui.layer,form = layui.form;
+    function sendRecord(){
+        var str={};
+        str.clientId =$("#clientId").val();
+        str.chatTime=$("#chatTime").val();
+        str.contacts =$("#contacts").val() ;
+        str.relation =$("#relation").val() ;
+        str.content =$("#content").val() ;
+        $.ajax({
+            type:'post',
+            url:"/addClientRecord",
+            dataType:"text",
+            async:false,
+            data:JSON.stringify(str),
+            contentType:"application/json",
+            success:function (data) {
+                layer.alert(data);
+                location.reload();
+            },
+            error:function (data) {
+                layer.alert("请求超时！")
+            }
+        });
+    }
+
+    var laydate = layui.laydate;
+    //日期时间选择器
+    laydate.render({
+        elem: '#chatTime'
+        ,type: 'datetime'
     });
 </script>
 </html>

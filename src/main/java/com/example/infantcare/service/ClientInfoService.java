@@ -1,24 +1,19 @@
 package com.example.infantcare.service;
 
 import com.example.infantcare.dao.ClientInfoMapper;
-import com.example.infantcare.dao.UserDao;
 import com.example.infantcare.pojo.ClientInfo;
-import com.example.infantcare.pojo.User;
+import com.example.infantcare.pojo.FollowRecord;
 import com.sun.mail.util.MailSSLSocketFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Map;
 
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
 
 
@@ -32,6 +27,16 @@ public class ClientInfoService {
     public int addClientInfo(ClientInfo clientInfo) {
         try {
             info.insertClient(clientInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        return 0;
+    }
+    //添加跟进记录addClientRecord
+    public int addClientRecord(FollowRecord record) {
+        try {
+            info.insertFollowRecord(record);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
