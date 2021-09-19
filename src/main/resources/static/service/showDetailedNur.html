@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+    <meta name="renderer" content="webkit">
+    <!--国产浏览器高速模式-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3241出品</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/local.js" ></script>
+</head>
+<body style="background-color: white">
+<div style="width: 50%;">
+    <div style="width: 100%">
+        <img src="../images/head/logo.png" style="width: 100%;height: 300px;align-content: center">
+    </div>
+    <div style="width: 100%">
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+</div>>
+</body>
+<script>
+    var $ = layui.$,layer = layui.layer,form = layui.form;
+
+    function lodeNursery(){
+        $.ajax({
+            type:"GET"
+            ,url:'/'
+            ,data:{"id":id},
+            success:function (data) {
+
+            },
+            error:function () {
+                layer.alert("请求超时！")
+            }
+        })
+    }
+</script>
+</html>
