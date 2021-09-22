@@ -28,6 +28,12 @@ public class ClientInfoController {
         String inviter =(String) map.get("inviter");
         String phone =( String) map.get("phone");
         String appointment =( String) map.get("appointment");
+        /**判断输入是否为 null
+         * */
+        /*if( == null){
+
+        }
+*/
         ClientInfo info = new ClientInfo(0,name,Integer.parseInt(inviter),phone,appointment);
         if(clientInfoService.addClientInfo(info)<0){
             return "添加失败";
