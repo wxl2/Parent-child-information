@@ -17,6 +17,10 @@ public class WorkingService {
 
     public int addWorkerRecord(NuseryWorking  nuseryWorking){
         try {
+            //  根据id获取到图片和名字
+            Nusery idNusery = getIdNusery(nuseryWorking.getId());
+            nuseryWorking.setImageurl(idNusery.getImageurl());
+            nuseryWorking.setName(idNusery.getName());
             nuseryWorkingMapper.insertNeseryWorking(nuseryWorking);;
             return 0;
         }catch (Exception e){

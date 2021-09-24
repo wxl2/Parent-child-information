@@ -66,10 +66,17 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">服务地址</label>
+            <div class="layui-input-inline">
+                <input type="text" id="addr" name="nursery" lay-verify="required"
+                       placeholder="请输入服务地址" value="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">育婴师</label>
             <div class="layui-input-inline">
                 <input type="text" id="nursery" name="nursery" lay-verify="required"
-                       disabled="disabled" value="" autocomplete="off" class="layui-input">
+                        disabled="disabled" value="" autocomplete="off" class="layui-input">
             </div>
         </div>
 
@@ -129,7 +136,7 @@
         let workStr = {};
         workStr.id = NurseryId;
         // 地址
-        //workStr.addr = $("#addr").val();
+        workStr.addr = $("#addr").val();
         workStr.date = $("#requiredate").val();
         $.ajax({
             type:'post',

@@ -55,8 +55,6 @@ public class WorkingController {
         JSONObject obj = JSON.parseObject(data);
         int id = obj.getInteger("id");
         String name = obj.getString("name");
-        //String imageurl = obj.getString("imageurl");
-        //int level = obj.getInteger("level");
         String addr = obj.getString("nursery_addr");
         String starttime = obj.getString("starttime");
         String endtime = obj.getString("endtime");
