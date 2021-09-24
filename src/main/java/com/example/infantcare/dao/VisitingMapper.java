@@ -7,12 +7,12 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 import java.util.Map;
 
-public interface VistingMapper {
+public interface VisitingMapper {
 
     @Insert("INSERT INTO visiting(`name`, `phone`, `addr`, `requirement`, `date`, `content`, `worker`) VALUES " +
             "(#{name}, #{phone}, #{addr}, #{requirement}, #{date}, #{content}, #{worker})")
-    public void insertVisting(Visiting visiting);
+    public void insertVisiting(Visiting visiting);
 
     @Select("SELECT * FROM  visiting")
-    public List<Map<String,Object>> selectVistings();
+    public List<Map<String,Object>> selectVisitings();
 }

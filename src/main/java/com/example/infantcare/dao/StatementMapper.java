@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface StatementMapper {
-    //  查询具有工作任务的语音师
+    //  查询具有工作任务的育婴师
     @Select("")
     public List<Map<String,Object>> selectWorkNursery();
 
@@ -18,6 +18,7 @@ public interface StatementMapper {
             ",#{phone},#{requirement},#{money},#{date},#{status})")
     public  int insertOrder(Order o);
 
+    //展示订单
     @Select("select * from sales")
     public List<Map<String,Object>> selectOrder();
 }

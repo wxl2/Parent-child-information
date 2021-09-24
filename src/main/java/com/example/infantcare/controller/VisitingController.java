@@ -3,8 +3,7 @@ package com.example.infantcare.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.infantcare.pojo.Visiting;
-import com.example.infantcare.service.UserService;
-import com.example.infantcare.service.VistingService;
+import com.example.infantcare.service.VisitingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,11 +15,11 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class VistingController {
+public class VisitingController {
     @Autowired
-    VistingService vistingService;
-    @PostMapping("/addVisting")
-    public String addVisting(@RequestBody String text){
+    VisitingService visitingService;
+    @PostMapping("/addVisiting")
+    public String addVisiting(@RequestBody String text){
         JSONObject obj = JSON.parseObject(text);
         String name = obj.getString("name");
         String phone = obj.getString("phone");
@@ -30,15 +29,15 @@ public class VistingController {
         String content = obj.getString("content");
         int worker = obj.getInteger("worker");
         Visiting visiting = new Visiting(name,phone, addr,requirement,date,content,worker);
-        if(vistingService.addVisting(visiting) < 0)
+        if(visitingService.addVisiting(visiting) < 0)
             return "操作失败";
         return "操作成功";
     }
 
-    @GetMapping("/getVistings")
-    public Map<String,Object> getVistings(){
+    @GetMapping("/getVisitings")
+    public Map<String,Object> getVisitings(){
         Map<String,Object> map = new HashMap<String,Object>();
-        List<Map<String,Object>> c_list = vistingService.getVistings();
+        List<Map<String,Object>> c_list = visitingService.getVisitings();
         if(c_list == null){
             map.put("code","-1");
             map.put("msg","暂无数据");
