@@ -5,17 +5,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.infantcare.pojo.NuseryLeusyre;
 import com.example.infantcare.pojo.NuseryWorking;
-import com.example.infantcare.pojo.Order;
 import com.example.infantcare.service.WorkingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 public class WorkingController {
@@ -93,4 +88,24 @@ public class WorkingController {
         }
         return map;
     }
+
+    @GetMapping("/getWorkerFree")
+    public Map<String,Object> getWorkerFree(@RequestParam("id") int id){
+        List<String> workerTimes = workingService.getWorkerTimes(id);
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        List<String> all7Day = new ArrayList<String>();
+        for(int i =0;i<7;i++){
+            cal.add(Calendar.DAY_OF_MONTH, +1);
+            all7Day.add(format.format(cal.getTime()));
+        }
+        for(int i=0;i<workerTimes.size();i++){
+            all7Day.remove(workerTimes.get(i));
+        }
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("count",all7Day.size());
+        map.put("data",all7Day);
+        return map;
+    }
+
 }

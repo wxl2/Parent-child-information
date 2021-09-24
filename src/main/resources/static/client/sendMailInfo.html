@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+    <meta name="renderer" content="webkit">
+    <!--国产浏览器高速模式-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3241出品</title>
+
+    <!-- 公共样式 开始 -->
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+    <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <!-- 公共样式 结束 -->
+    <style>
+        .layui-form-label {
+            width: 100px;
+        }
+
+        .layui-input-block {
+            margin-left: 130px;
+        }
+
+        .layui-form {
+            margin-right: 30%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="cBody">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司邮箱：</label>
+            <div class="layui-input-inline">
+                <input id="firmMail" type="text" name="" autocomplete="off" placeholder="请输入公司邮箱账号" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">授权码：</label>
+            <div class="layui-input-inline">
+                <input id="password" type="text" name="" autocomplete="off" placeholder="请输入..." value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">客服邮箱</label>
+            <div class="layui-input-inline">
+                <input id="clientMail" type="text" name="" autocomplete="off" placeholder="请输入客户邮箱" value=""
+                       class="layui-input">
+            </div>
+        </div>
+        <br>
+        <div class="layui-inline" style="margin-bottom: 40px;">
+            <label class="layui-form-label">邮件内容：</label>
+            <div class="layui-input-block">
+                <textarea id="textMail" placeholder="请输入内容...   如：节日快乐！" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" onclick="sendSubmit()">发送</button>
+                <button type="reset" class="layui-btn">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+<script>
+    var $ = layui.$, layer = layui.layer, form = layui.form;
+
+    function sendSubmit() {
+        let data = {};
+        data.firmMail = $("#firmMail").val();
+        data.password = $("#password").val();
+        data.clientMail = $("#clientMail").val();
+        data.textContent = $("#textMail").val();
+
+        $.ajax({
+            type: 'post',
+            url: "/sendSimpleMail",
+            dataType: "text",
+            async: false,
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data) {
+                layer.alert(data);
+            },
+            error: function (data) {
+                layer.alert("请求超时！")
+            }
+        });
+    }
+</script>

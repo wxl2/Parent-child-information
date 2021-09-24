@@ -2,6 +2,7 @@ package com.example.infantcare.controller;
 
 
 import com.example.infantcare.pojo.ClientInfo;
+import com.example.infantcare.pojo.FollowRecord;
 import com.example.infantcare.service.ClientInfoService;
 import com.example.infantcare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,12 +21,19 @@ import java.util.Map;
 public class ClientInfoController {
     @Autowired
     ClientInfoService clientInfoService;
+
     @PostMapping("/addClientInfo")
     public String addClientInfo(@RequestBody Map<String,Object> map){
         String name = (String) map.get("name");
         String inviter =(String) map.get("inviter");
         String phone =( String) map.get("phone");
         String appointment =( String) map.get("appointment");
+        /**判断输入是否为 null
+         * */
+        /*if( == null){
+
+        }
+*/
         ClientInfo info = new ClientInfo(0,name,Integer.parseInt(inviter),phone,appointment);
         if(clientInfoService.addClientInfo(info)<0){
             return "添加失败";
@@ -68,5 +77,46 @@ public class ClientInfoController {
             map.put("data",c_list);
         }
         return map;
+    }
+    // 邮件发送请求sendSimpleMail
+    @PostMapping("/sendSimpleMail")
+    public String sendSimpleMail(@RequestBody Map<String,Object> map){
+        String firmMail =( String) map.get("firmMail");
+        String password =(String) map.get("password");
+        String clientMail =( String) map.get("clientMail");
+        String textContent =( String) map.get("textContent");
+        int result =0;
+        try {
+            result = clientInfoService.sendSimpleMail(firmMail,password,clientMail,textContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(result < 0){
+            return "发送失败";
+        }else
+        return "发送成功";
+    }
+
+    //添加回访记录addClientRecord
+    @PostMapping("/addClientRecord")
+    public String addClientRecord(@RequestBody Map<String,Object> map){
+        /**
+         * 第一种方法：i=Integer.parseInt(s);//默认十进制
+         * 第二种方法：i=Integer.valueOf(s).intValue();*/
+        int id = 0;
+        try {
+            id = Integer.valueOf(( String) map.get("clientId")).intValue();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        String chatTime =( String) map.get("chatTime");
+        String content =(String) map.get("content");
+        String contacts =( String) map.get("contacts");
+        String relation =( String) map.get("relation");
+        FollowRecord info = new FollowRecord(id,chatTime,content,contacts,relation);
+        if(clientInfoService.addClientRecord(info)<0){
+            return "添加失败";
+        }
+        return "添加成功";
     }
 }
