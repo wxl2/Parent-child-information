@@ -125,7 +125,27 @@
 </script>
 <script>
     function sendContract() {
-        var str = {};
+        // 添加合同后自动把具有工作任务的育婴师添加进工作表中
+        let workStr = {};
+        workStr.id = NurseryId;
+        // 地址
+        //workStr.addr = $("#addr").val();
+        workStr.date = $("#requiredate").val();
+        $.ajax({
+            type:'post',
+            url:"/addWorking",
+            dataType:"text",
+            async:false,
+            data:JSON.stringify(workStr),
+            contentType:"application/json",
+            success:function (data) {
+            },
+            error:function (data) {
+                layer.alert("请求超时！")
+            }
+        });
+
+        let  str = {};
         str.name = $("#name").val();
         str.phone = $("#phone").val();
         str.confinement = $("#confinement").val();
@@ -133,12 +153,14 @@
         str.requirement = $("#requirement").val();
         str.nursery = $("#nursery").val();
         str.conMoney = $("#conmoney").val();
+        //  添加合同
         postAjax(str, '/addContract', 'text', 'application/json');
+
+
     }
 </script>
 <script>
     var laydate = layui.laydate;
-
     //常规用法
     laydate.render({
         elem: '#confinement'

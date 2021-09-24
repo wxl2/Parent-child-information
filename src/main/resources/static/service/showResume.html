@@ -34,13 +34,13 @@
 
         <div class="carousel-inner">
             <div class="carousel-item">
-                <img id="Runimg0" onclick="Nursery(1)" src="../images/head/not.png" class="d-block w-100" alt="...">
+                <img id="Runimg0" onclick="Nursery(1)" src="../images/head/not.png" height="600" width="1200" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item active">
-                <img id="Runimg1" onclick="Nursery(2)" src="../images/head/not.png" class="d-block w-100" alt="...">
+                <img id="Runimg1" onclick="Nursery(2)" src="../images/head/not.png" height="600" width="1200" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img id="Runimg2" onclick="Nursery(3)" src="../images/head/not.png" class="d-block w-100" alt="...">
+                <img id="Runimg2" onclick="Nursery(3)" src="../images/head/not.png" height="600" width="1200" class="d-block w-100" alt="...">
             </div>
         </div>
 
@@ -61,42 +61,42 @@
         </div>
         <div class="row mb-3">
             <div class="film col-lg-2 col-md-2 col-sm-4" title="">
-                <a href="#"><img onclick="Nursery(4)" id="img0" src="../images/logo.png" ></a>
+                <a href="#"><img onclick="Nursery(4)" id="img0" src="../images/head/not.png" ></a>
             </div>
             <div class="film col-lg-2 col-md-2 col-sm-4">
-                <a href="#"><img onclick="Nursery(5)" id="img1" src="../images/logo.png"></a>
+                <a href="#"><img onclick="Nursery(5)" id="img1" src="../images/head/not.png"></a>
             </div>
             <div class="film col-lg-2 col-md-2 col-sm-4">
-                <a href="#"><img onclick="Nursery(6)" id="img2" src="../images/logo.png"></a>
+                <a href="#"><img onclick="Nursery(6)" id="img2" src="../images/head/not.png"></a>
             </div>
             <div class="film col-lg-2 col-md-2 col-sm-4">
-                <a href="#"><img onclick="Nursery(7)" id="img3" src="../images/logo.png"></a>
+                <a href="#"><img onclick="Nursery(7)" id="img3" src="../images/head/not.png"></a>
             </div>
             <div class="film col-lg-2 col-md-2 col-sm-4">
-                <a href="#"><img onclick="Nursery(8)" id="img4" src="../images/logo.png"></a>
+                <a href="#"><img onclick="Nursery(8)" id="img4" src="../images/head/not.png"></a>
             </div>
             <div class="film col-lg-2 col-md-2 col-sm-4">
-                <a href="#"><img onclick="Nursery(9)" id="img5" src="../images/logo.png"></a>
+                <a href="#"><img onclick="Nursery(9)" id="img5" src="../images/head/not.png"></a>
             </div>
         </div>
         <div class="row mb-3">
             <div class="film col-lg-2 col-md-2 col-sm-4">
-                <a href="#"><img onclick="Nursery(10)" id="img6" src="../images/logo.png"></a>
+                <a href="#"><img onclick="Nursery(10)" id="img6" src="../images/head/not.png"></a>
             </div>
             <div class="film col-lg-2 col-md-2 col-sm-4">
-                <a href="#"><img onclick="Nursery(11)" id="img7" src="../images/logo.png"></a>
+                <a href="#"><img onclick="Nursery(11)" id="img7" src="../images/head/not.png"></a>
             </div>
             <div class="film col-lg-2 col-md-2 col-sm-4">
-                <a href="film_info.html"><img onclick="Nursery()" id="img8" src="../images/logo.png"></a>
+                <a href="#"><img onclick="Nursery(12)" id="img8" src="../images/head/not.png"></a>
             </div>
             <div class="film col-lg-2 col-md-2 col-sm-4">
-                <a href="#"><img onclick="Nursery(12)" id="img9" src="../images/logo.png"></a>
+                <a href="#"><img onclick="Nursery(13)" id="img9" src="../images/head/not.png"></a>
             </div>
             <div class="film col-lg-2 col-md-2 col-sm-4">
-                <a href="#"><img onclick="Nursery(13)" id="img10" src="../images/logo.png"></a>
+                <a href="#"><img onclick="Nursery(14)" id="img10" src="../images/head/not.png"></a>
             </div>
             <div class="film col-lg-2 col-md-2 col-sm-4">
-                <a href="#"><img onclick="Nursery(14)" id="img11" src="../images/logo.png"></a>
+                <a href="#"><img onclick="Nursery(15)" id="img11" src="../images/head/not.png"></a>
             </div>
             <!-- 下面的div -->
         </div>
@@ -127,7 +127,6 @@
             data: {"page": page, "limit": limit},
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 //  设置图片url
                 renderProductHtml(data.data, data.count);
             },
@@ -150,24 +149,30 @@
         }
 
         //  img
-        for (let i = 0; i < size && i < 12; i++) {
+        let i = 0
+        for (; i < size && i < 12; i++) {
             let id = data[i].id;
             let url = "../images/head/" + data[i].imageurl;
             let idImg = "img" + i;
             $("#" + idImg).attr("src", url);
             $("#" + idImg).attr("title", id);
         }
+        for(;i < 12; i++){
+            let idImg = "img" + i;
+            $("#" + idImg).attr("src", "../images/head/not.png");
+            $("#" + idImg).attr("title", "");
+        }
     }
     function nextInfo(){
         if (lastSize == limit){
             page = page +1;
-            LodeResume(page,limit);
+                LodeResume(page,limit);
         }else alert("已经是最后一页了");
 
 
     }
     function lastInfo(){
-        if (page>=2){
+        if (page>=1){
             page = page -1;
             LodeResume(page,limit);
         } else alert("这是第一页");
@@ -194,7 +199,10 @@
         }else {
             let Idimg ="img"+(imgId-4);
             let id = $("#"+Idimg).attr("title");
-            window.location.href="./showMinuteNur.html?id="+id;
+            if(id != ""){
+                window.location.href="./showMinuteNur.html?id="+id;
+            }
+
         }
     }
 </script>

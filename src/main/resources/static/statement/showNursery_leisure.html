@@ -36,6 +36,13 @@
                value="" autocomplete="off" class="layui-input">
       </div>
     </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">居住地</label>
+      <div class="layui-input-inline">
+        <input type="text" id="addr"  name="name" lay-verify="required" placeholder="请输入育婴师居住地"
+               value="" autocomplete="off" class="layui-input">
+      </div>
+    </div>
     <div class="layui-inline">
       <label class="layui-form-label">开始时间</label>
       <div class="layui-input-inline">
@@ -93,14 +100,14 @@
 <script>
   layui.use('laydate', function () {
     var laydate = layui.laydate;
-    //时间选择器
+    //日期时间选择器
     laydate.render({
       elem: '#starttime'
-      ,type: 'time'
+      ,type: 'datetime'
     });
     laydate.render({
       elem: '#endtime'
-      ,type: 'time'
+      ,type: 'datetime'
     });
   });
 </script>
@@ -112,6 +119,7 @@
     str.name=$("#name").val();
     str.starttime =$("#starttime").val() ;
     str.endtime =$("#endtime").val() ;
+    str.nursery_addr =$("#addr").val() ;
     postAjax(str,'/addLeisure','text','application/json');
   }
 </script>
