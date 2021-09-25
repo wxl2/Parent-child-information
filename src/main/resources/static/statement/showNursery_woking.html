@@ -16,6 +16,9 @@
 <body style="background-color: white">
 <p  align="center"></p>
 <table class="layui-hide" id="show" ></table>
+<script type="text/html" id="imgtmp">
+  <img src="../images/head/{{d.imageurl}}" width="28" height="28"  />
+</script>
 </body>
 <script>
   var $ = layui.$,layer = layui.layer,form = layui.form;
@@ -29,9 +32,8 @@
       ,title: 'nursery_working'
       ,cols: [[
         {field:'id', width:100, title:'id'}
-        ,{field:'nursery_name', width:150, title:'育婴师'}
-        ,{field:'imageurl', width:100, title:'照片'}
-        ,{field:'name', width:140, title:'客户'}
+        ,{field:'name', width:150, title:'育婴师'}
+        ,{ field: 'imageurl', title: '照片',width: 120 , align: "center", templet: "#imgtmp"}
         ,{field:'addr', width:100, title:'服务地点'}
         ,{field:'date', width:200, title:'服务时间'}
       ]]
@@ -41,8 +43,32 @@
       },
       error:function (data) {
         alert("失败");
+      },
+      done: function (res, curr, count) {
+        hoverOpenImg();//显示大图
+        $('table tr').on('click', function () {
+          $('table tr').css('background', '');
+          $(this).css('background', '<%=PropKit.use("config.properties").get("table_color")%>');
+        });
       }
     });
+    //显示图片
+    function hoverOpenImg() {
+      var img_show = null; // tips提示
+      $('td img').hover(function () {
+        var kd = $(this).width();
+        kd1 = kd * 6;          //图片放大倍数
+        kd2 = kd * 6 + 100;       //图片放大倍数
+        var img = "<img class='img_msg' src='" + $(this).attr('src') + "' style='width:" + kd1 + "px;'  margin=0px padding=0px/>";
+        img_show = layer.tips(img, this, {
+          tips: [2, 'rgba(41,41,41,.0)']
+          , area: [kd2 + 'px']
+        });
+      }, function () {
+        layer.close(img_show);
+      });
+      $('td img').attr('style', 'max-width:70px;display:block!important');
+    }
   });
 </script>
 </html>
