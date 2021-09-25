@@ -18,7 +18,7 @@
 <body onload="getNursery()">
 <div style="width: 100%;text-align: center">
     <div style="width: 30%;display: inline-block">
-        <img src="../images/head/2021-09-13-22-25-50-test2.jpg" style="height: 488px;width: 455px;">
+        <img id="imageurl" src="../images/head/not.png" style="height: 488px;width: 455px;">
     </div>
     <div style="position: relative;display: inline-block;top: 94px;">
         <form class="layui-form layui-form-pane">
@@ -120,8 +120,6 @@
         });
     }
     function LodeNotWorking(data,size){
-        console.log(data);
-        console.log(size);
         for (let i = 0; i < size; i++) {
             $("#leisureTime").append("<option value='"+data[i]+"'>"+data[i]+"</option>");
         }
@@ -133,7 +131,7 @@
     /*数据渲染*/
     function LodeNursery(data){
         $("#name").attr("value",data.name);
-        $("#imageurl").attr("src",data.imageurl);
+        $("#imageurl").attr("src","../images/head/"+data.imageurl);
         $("#age").attr("value",data.age);
         $("#edulevel").attr("value",data.edulevel);
         $("#marry").attr("value",data.marry);
@@ -148,7 +146,6 @@
         let name = $("#name").attr("value");
         let leisureTime = $("#leisureTime").val();
         var str ="./addContract.html?id="+id+"&name="+name+"&leisureTime="+leisureTime;
-        console.log("url = "+ str );
         window.location.href = str;
     }
 </script>
