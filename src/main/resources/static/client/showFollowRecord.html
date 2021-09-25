@@ -56,7 +56,7 @@
         <div class="layui-inline" style="margin-bottom: 40px;">
             <label class="layui-form-label">沟通内容：</label>
             <div class="layui-input-block">
-                <textarea id="content" placeholder="请输入内容... " class="layui-textarea"></textarea>
+                <textarea id="communicate" placeholder="请输入内容... " class="layui-textarea"></textarea>
             </div>
         </div>
 
@@ -107,7 +107,7 @@
         str.chatTime=$("#chatTime").val();
         str.contacts =$("#contacts").val() ;
         str.relation =$("#relation").val() ;
-        str.content =$("#content").val() ;
+        str.communicate =$("#communicate").val() ;
         $.ajax({
             type:'post',
             url:"/addClientRecord",

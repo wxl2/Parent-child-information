@@ -110,10 +110,10 @@ public class ClientInfoController {
             e.printStackTrace();
         }
         String chatTime =( String) map.get("chatTime");
-        String content =(String) map.get("content");
+        String communicate =(String) map.get("communicate");
         String contacts =( String) map.get("contacts");
         String relation =( String) map.get("relation");
-        FollowRecord info = new FollowRecord(id,chatTime,content,contacts,relation);
+        FollowRecord info = new FollowRecord(id,chatTime,contacts,relation,communicate);
         if(clientInfoService.addClientRecord(info)<0){
             return "添加失败";
         }
