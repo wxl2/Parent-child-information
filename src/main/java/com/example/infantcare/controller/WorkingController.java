@@ -20,12 +20,10 @@ public class WorkingController {
     public String addWorking(@RequestBody String data){
         JSONObject obj = JSON.parseObject(data);
         int id = obj.getInteger("id");
-        String name = obj.getString("name");
-        String imageurl = obj.getString("imageurl");
         String addr = obj.getString("addr");
         String date = obj.getString("date");
 
-        NuseryWorking nuseryWorking = new NuseryWorking(id,name,imageurl,addr,date);
+        NuseryWorking nuseryWorking = new NuseryWorking(id,"","",addr,date);
         if(workingService.addWorkerRecord(nuseryWorking) < 0){
             return "操作失败";
         }
@@ -57,13 +55,11 @@ public class WorkingController {
         JSONObject obj = JSON.parseObject(data);
         int id = obj.getInteger("id");
         String name = obj.getString("name");
-        String imageurl = obj.getString("imageurl");
-        int level = obj.getInteger("level");
         String addr = obj.getString("nursery_addr");
         String starttime = obj.getString("starttime");
         String endtime = obj.getString("endtime");
 
-        NuseryLeusyre nuseryLeusyre = new NuseryLeusyre(id,name,imageurl,level,addr,starttime,endtime);
+        NuseryLeusyre nuseryLeusyre = new NuseryLeusyre(id,name,"",0,addr,starttime,endtime);
         if(workingService.addLeisureRecord(nuseryLeusyre)< 0){
             return "操作失败";
         }

@@ -24,10 +24,16 @@ public class ClientInfoController {
 
     @PostMapping("/addClientInfo")
     public String addClientInfo(@RequestBody Map<String,Object> map){
-        String name =( String) map.get("name");
+        String name = (String) map.get("name");
         String inviter =(String) map.get("inviter");
         String phone =( String) map.get("phone");
         String appointment =( String) map.get("appointment");
+        /**判断输入是否为 null
+         * */
+        /*if( == null){
+
+        }
+*/
         ClientInfo info = new ClientInfo(0,name,Integer.parseInt(inviter),phone,appointment);
         if(clientInfoService.addClientInfo(info)<0){
             return "添加失败";
@@ -104,10 +110,10 @@ public class ClientInfoController {
             e.printStackTrace();
         }
         String chatTime =( String) map.get("chatTime");
-        String content =(String) map.get("content");
+        String communicate =(String) map.get("communicate");
         String contacts =( String) map.get("contacts");
         String relation =( String) map.get("relation");
-        FollowRecord info = new FollowRecord(id,chatTime,content,contacts,relation);
+        FollowRecord info = new FollowRecord(id,chatTime,contacts,relation,communicate);
         if(clientInfoService.addClientRecord(info)<0){
             return "添加失败";
         }

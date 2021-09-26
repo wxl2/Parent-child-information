@@ -24,7 +24,7 @@
     table.render({
       type:"GET",
       elem: '#visiting'
-      ,url:'/getVisitings'
+      ,url:'/getVistings'
       ,title: 'nursery'
       ,cols: [[
         {field:'name', width:80, title:'客户'}
@@ -33,10 +33,8 @@
         ,{field:'requirement', width:100, title:'所需服务'}
         ,{field:'content', width:100, title:'沟通内容'}
         ,{field:'date', width:200, title:'需求时间'}
-        ,{field: 'worker',width: 100,title: '对接职员'}
       ]]
       ,page: true
-      ,parseData: paging
       ,success:function (data) {
         alert("成功");
         console.log(data);

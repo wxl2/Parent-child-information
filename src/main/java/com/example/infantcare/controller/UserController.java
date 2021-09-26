@@ -30,8 +30,14 @@ public class UserController {
         }
         User user = new User(username,passwd);
         User  data = userService.login(user);
-        res.put("status","success");
-        res.put("data","");
+        if(data == null){
+            res.put("status","falid");
+            res.put("data","账号或密码错误");
+        }
+        else {
+            res.put("status","success");
+            res.put("data","");
+        }
         return res;
     }
 }

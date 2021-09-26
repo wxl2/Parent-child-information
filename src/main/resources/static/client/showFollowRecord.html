@@ -44,6 +44,7 @@
             <label class="layui-form-label">客户与联系人关系:</label>
             <div class="layui-input-inline">
                 <select id="relation">
+                    <option value="客户">客户</option>
                     <option value="妻子">妻子</option>
                     <option value="家人">家人</option>
                     <option value="亲戚">亲戚</option>
@@ -55,7 +56,7 @@
         <div class="layui-inline" style="margin-bottom: 40px;">
             <label class="layui-form-label">沟通内容：</label>
             <div class="layui-input-block">
-                <textarea id="content" placeholder="请输入内容... " class="layui-textarea"></textarea>
+                <textarea id="communicate" placeholder="请输入内容... " class="layui-textarea"></textarea>
             </div>
         </div>
 
@@ -106,7 +107,7 @@
         str.chatTime=$("#chatTime").val();
         str.contacts =$("#contacts").val() ;
         str.relation =$("#relation").val() ;
-        str.content =$("#content").val() ;
+        str.communicate =$("#communicate").val() ;
         $.ajax({
             type:'post',
             url:"/addClientRecord",
@@ -116,7 +117,7 @@
             contentType:"application/json",
             success:function (data) {
                 layer.alert(data);
-                location.reload();
+
             },
             error:function (data) {
                 layer.alert("请求超时！")
