@@ -7,6 +7,7 @@ import com.sun.mail.util.MailSSLSocketFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Map;
 
@@ -67,7 +68,7 @@ public class ClientInfoService {
     }
 
     // 发送邮件sendSimpleMail
-    public int sendSimpleMail(String firmMail, String password, String clientMail, String textContent)  {
+    public int sendSimpleMail(String firmMail, String password, String clientMail, String textContent) throws GeneralSecurityException {
         // passwprd ="rwpavvxjjyfzcjhe";
         Properties prop = new Properties();
         prop.setProperty("mail.host", "smtp.qq.com");  //设置QQ邮件服务器
@@ -123,17 +124,12 @@ public class ClientInfoService {
             try {
                 //6、关闭连接对象，即关闭服务器上的连接资源
                 ts.close();
-                return 0;
             } catch (MessagingException e) {
                 e.printStackTrace();
                 return -1;
             }
         }
-
-
-
-
-
+        return 0;
     }
 
 }
